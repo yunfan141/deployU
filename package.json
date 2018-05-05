@@ -20,6 +20,7 @@
     "@nestjs/testing": "^4.5.5",
     "@nestjs/typeorm": "^2.0.0",
     "@nestjs/websockets": "^4.5.8",
+    "pg": "^7.4.2",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^5.5.6",
     "typeorm": "^0.2.5",

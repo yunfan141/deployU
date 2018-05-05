@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
 exports.databaseProviders = [
     {
-        provider: 'TypeORMInstance',
+        provide: 'TypeORMInstance',
         useFactory: () => __awaiter(this, void 0, void 0, function* () {
             return yield typeorm_1.createConnection({
                 type: 'postgres',
@@ -21,12 +21,12 @@ exports.databaseProviders = [
                 password: "12345",
                 database: 'HealthU',
                 entities: [
-                    __dirname + '../../**/*.entity{.ts,.js}',
+                    __dirname + '/../../**/*.entity{.ts,.js}',
                 ],
                 logging: true,
                 synchronize: true
             });
-        })
+        }),
     }
 ];
 //# sourceMappingURL=database.provider.js.map

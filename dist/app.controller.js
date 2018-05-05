@@ -9,20 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const common_1 = require("@nestjs/common");
 let AppController = class AppController {
     root() {
         return 'Hello World!';
     }
 };
 __decorate([
-    common_1.Get(),
+    Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
 ], AppController.prototype, "root", null);
 AppController = __decorate([
-    common_1.Controller()
+    Controller()
 ], AppController);
 exports.AppController = AppController;
 //# sourceMappingURL=app.controller.js.map

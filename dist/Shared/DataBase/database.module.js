@@ -7,15 +7,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const database_module_1 = require("./Shared/DataBase/database.module");
-let AppModule = class AppModule {
+const database_provider_1 = require("./database.provider");
+let DatabaseModule = class DatabaseModule {
 };
-AppModule = __decorate([
+DatabaseModule = __decorate([
     common_1.Module({
-        modules: [
-            database_module_1.DatabaseModule
+        components: [...database_provider_1.databaseProviders],
+        exports: [
+            ...database_provider_1.databaseProviders
         ]
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], DatabaseModule);
+exports.DatabaseModule = DatabaseModule;
+//# sourceMappingURL=database.module.js.map

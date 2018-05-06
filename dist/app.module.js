@@ -8,12 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const database_module_1 = require("./Shared/DataBase/database.module");
+const user_module_1 = require("./User/user.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     common_1.Module({
         modules: [
-            database_module_1.DatabaseModule
+            database_module_1.DatabaseModule,
+            user_module_1.UserModule
         ]
     })
 ], AppModule);

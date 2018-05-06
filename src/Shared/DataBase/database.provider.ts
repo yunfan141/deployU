@@ -11,7 +11,7 @@ export const databaseProviders = [
       password: "12345",
       database: 'HealthU',
       entities: [
-        __dirname + '/../**/*.entity{.ts,.js}',
+        __dirname + '/../../**/*.entity{.ts,.js}',
       ],
       logging:true,
       synchronize:true

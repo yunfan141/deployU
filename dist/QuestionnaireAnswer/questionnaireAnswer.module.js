@@ -7,25 +7,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const session_controller_1 = require("./session.controller");
-const session_service_1 = require("./session.service");
-const session_providers_1 = require("./session.providers");
+const questionnaireAnswer_controller_1 = require("./questionnaireAnswer.controller");
+const questionnaireAnswer_service_1 = require("./questionnaireAnswer.service");
 const database_module_1 = require("../Shared/DataBase/database.module");
-let SessionModule = class SessionModule {
+const questionnaireAnswer_providers_1 = require("./questionnaireAnswer.providers");
+let QuestionnaireAnswerModule = class QuestionnaireAnswerModule {
 };
-SessionModule = __decorate([
+QuestionnaireAnswerModule = __decorate([
     common_1.Module({
         imports: [
             database_module_1.DatabaseModule
         ],
         components: [
-            session_providers_1.sessionProvider,
-            session_service_1.SessionService
+            questionnaireAnswer_service_1.QuestionnaireAnswerService,
+            questionnaireAnswer_providers_1.questionnaireAnserProvider
         ],
         controllers: [
-            session_controller_1.SessionController
+            questionnaireAnswer_controller_1.QuestionnaireAnswerController
         ]
     })
-], SessionModule);
-exports.SessionModule = SessionModule;
-//# sourceMappingURL=session.module.js.map
+], QuestionnaireAnswerModule);
+exports.QuestionnaireAnswerModule = QuestionnaireAnswerModule;
+//# sourceMappingURL=questionnaireAnswer.module.js.map

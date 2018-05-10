@@ -21,39 +21,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const session_service_1 = require("./session.service");
-const create_Session_dto_1 = require("./DTO/create-Session.dto");
-let SessionController = class SessionController {
-    constructor(sessionService) {
-        this.sessionService = sessionService;
+const questionnaireAnswer_service_1 = require("./questionnaireAnswer.service");
+const create_QuestionnaireAnswer_dto_1 = require("./DTO/create-QuestionnaireAnswer.dto");
+let QuestionnaireAnswerController = class QuestionnaireAnswerController {
+    constructor(quesionnaireAnswerService) {
+        this.quesionnaireAnswerService = quesionnaireAnswerService;
     }
-    getAllSession() {
+    getAllQuestionnaireAnswer() {
         return __awaiter(this, void 0, void 0, function* () {
-            const msg = yield this.sessionService.getAllSession();
+            const msg = yield this.quesionnaireAnswerService.getAllQuestionnaireAnswer();
             return msg;
         });
     }
-    getSessionById(params) {
+    getQuestionnaireAnswerById(params) {
         return __awaiter(this, void 0, void 0, function* () {
-            const msg = yield this.sessionService.getSessionById(params.id);
+            const msg = yield this.quesionnaireAnswerService.getQuestionnaireAnswerById(params.id);
             return msg;
         });
     }
-    addSession(session) {
+    addQuestionnaireAnswer(questionnaireAnswer) {
         return __awaiter(this, void 0, void 0, function* () {
-            const msg = yield this.sessionService.addSession(session);
+            const msg = yield this.quesionnaireAnswerService.addQuestionnaireAnswer(questionnaireAnswer);
             return msg;
         });
     }
-    updateSession(params, newSession) {
+    updateQuestionnaireAnswer(params, newQuestionnaireAnswer) {
         return __awaiter(this, void 0, void 0, function* () {
-            const msg = yield this.sessionService.updateSession(params.id, newSession);
-            return msg;
-        });
-    }
-    deleteSession(params) {
-        return __awaiter(this, void 0, void 0, function* () {
-            const msg = yield this.sessionService.deleteSession(params.id);
+            const msg = yield this.quesionnaireAnswerService.updateQuestionnaireAnswer(params.id, newQuestionnaireAnswer);
             return msg;
         });
     }
@@ -63,38 +57,31 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], SessionController.prototype, "getAllSession", null);
+], QuestionnaireAnswerController.prototype, "getAllQuestionnaireAnswer", null);
 __decorate([
     common_1.Get(':id'),
     __param(0, common_1.Param()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], SessionController.prototype, "getSessionById", null);
+], QuestionnaireAnswerController.prototype, "getQuestionnaireAnswerById", null);
 __decorate([
     common_1.Post(),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_Session_dto_1.CreateSessionDto]),
+    __metadata("design:paramtypes", [create_QuestionnaireAnswer_dto_1.CreateQuestionnaireAnswerDto]),
     __metadata("design:returntype", Promise)
-], SessionController.prototype, "addSession", null);
+], QuestionnaireAnswerController.prototype, "addQuestionnaireAnswer", null);
 __decorate([
     common_1.Patch(':id'),
     __param(0, common_1.Param()), __param(1, common_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, create_Session_dto_1.CreateSessionDto]),
+    __metadata("design:paramtypes", [Object, create_QuestionnaireAnswer_dto_1.CreateQuestionnaireAnswerDto]),
     __metadata("design:returntype", Promise)
-], SessionController.prototype, "updateSession", null);
-__decorate([
-    common_1.Delete(':id'),
-    __param(0, common_1.Param()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], SessionController.prototype, "deleteSession", null);
-SessionController = __decorate([
-    common_1.Controller('session'),
-    __metadata("design:paramtypes", [session_service_1.SessionService])
-], SessionController);
-exports.SessionController = SessionController;
-//# sourceMappingURL=session.controller.js.map
+], QuestionnaireAnswerController.prototype, "updateQuestionnaireAnswer", null);
+QuestionnaireAnswerController = __decorate([
+    common_1.Controller('questionnaireAnswer'),
+    __metadata("design:paramtypes", [questionnaireAnswer_service_1.QuestionnaireAnswerService])
+], QuestionnaireAnswerController);
+exports.QuestionnaireAnswerController = QuestionnaireAnswerController;
+//# sourceMappingURL=questionnaireAnswer.controller.js.map

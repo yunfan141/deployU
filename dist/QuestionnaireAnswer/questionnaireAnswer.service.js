@@ -22,42 +22,42 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
-let SessionService = class SessionService {
-    constructor(sessionRepository) {
-        this.sessionRepository = sessionRepository;
+let QuestionnaireAnswerService = class QuestionnaireAnswerService {
+    constructor(questionnaireAnswerRepository) {
+        this.questionnaireAnswerRepository = questionnaireAnswerRepository;
     }
-    getAllSession() {
+    getAllQuestionnaireAnswer() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.sessionRepository.find();
+            return yield this.questionnaireAnswerRepository.find();
         });
     }
-    getSessionById(sessionId) {
+    getQuestionnaireAnswerById(questionnaireAnswerId) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.sessionRepository.findOne({ where: { id: sessionId } });
+            return yield this.questionnaireAnswerRepository.findOne({ where: { id: questionnaireAnswerId } });
         });
     }
-    addSession(session) {
+    addQuestionnaireAnswer(questionnaireAnswer) {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.sessionRepository.save(session);
+            return yield this.questionnaireAnswerRepository.save(questionnaireAnswer);
         });
     }
-    updateSession(sessionId, newSession) {
+    updateQuestionnaireAnswer(questionnaireAnswerId, newQuestionnaireAnswer) {
         return __awaiter(this, void 0, void 0, function* () {
-            const selectedSession = yield this.sessionRepository.findOne({ where: { id: sessionId } });
-            if (selectedSession) {
-                yield this.sessionRepository.update(sessionId, newSession);
-                return yield this.sessionRepository.findOne({ where: { id: sessionId } });
+            const selectedQuestionnaireAnswer = yield this.questionnaireAnswerRepository.findOne({ where: { id: questionnaireAnswerId } });
+            if (selectedQuestionnaireAnswer) {
+                yield this.questionnaireAnswerRepository.update(questionnaireAnswerId, newQuestionnaireAnswer);
+                return yield this.questionnaireAnswerRepository.findOne({ where: { id: questionnaireAnswerId } });
             }
             else {
                 return null;
             }
         });
     }
-    deleteSession(sessionId) {
+    deleteQuestionnaireAnswer(questionnaireAnswerId) {
         return __awaiter(this, void 0, void 0, function* () {
-            const selectedSession = yield this.sessionRepository.findOne({ where: { id: sessionId } });
-            if (selectedSession) {
-                yield this.sessionRepository.delete(sessionId);
+            const selectedQuestionnaireAnswer = yield this.questionnaireAnswerRepository.findOne({ where: { id: questionnaireAnswerId } });
+            if (selectedQuestionnaireAnswer) {
+                yield this.questionnaireAnswerRepository.delete(questionnaireAnswerId);
                 return 'delete success';
             }
             else {
@@ -66,10 +66,10 @@ let SessionService = class SessionService {
         });
     }
 };
-SessionService = __decorate([
+QuestionnaireAnswerService = __decorate([
     common_1.Component(),
-    __param(0, common_1.Inject('SessionRepository')),
+    __param(0, common_1.Inject('QuestionnaireAnswerRepository')),
     __metadata("design:paramtypes", [typeorm_1.Repository])
-], SessionService);
-exports.SessionService = SessionService;
-//# sourceMappingURL=session.service.js.map
+], QuestionnaireAnswerService);
+exports.QuestionnaireAnswerService = QuestionnaireAnswerService;
+//# sourceMappingURL=questionnaireAnswer.service.js.map

@@ -14,6 +14,8 @@ const subDomain_module_1 = require("./DomainForQuestionnaire/SubDomain/subDomain
 const demographic_module_1 = require("./Demograpic/demographic.module");
 const questionnaire_module_1 = require("./Questionnaire/questionnaire.module");
 const userDemographic_module_1 = require("./UsersDemographic/userDemographic.module");
+const questionnaireAnswer_module_1 = require("./QuestionnaireAnswer/questionnaireAnswer.module");
+const session_module_1 = require("./Session/session.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -25,7 +27,9 @@ AppModule = __decorate([
             subDomain_module_1.SubDomainModule,
             demographic_module_1.DemographicModule,
             questionnaire_module_1.QuestionnaireModule,
-            userDemographic_module_1.UserDemographicModule
+            userDemographic_module_1.UserDemographicModule,
+            questionnaireAnswer_module_1.QuestionnaireAnswerModule,
+            session_module_1.SessionModule
         ]
     })
 ], AppModule);

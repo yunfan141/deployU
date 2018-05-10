@@ -10,15 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
-class CreateSessionDto {
+class CreateQuestionnaireAnswerDto {
 }
 __decorate([
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
-], CreateSessionDto.prototype, "id", void 0);
+], CreateQuestionnaireAnswerDto.prototype, "id", void 0);
 __decorate([
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
-], CreateSessionDto.prototype, "userId", void 0);
-exports.CreateSessionDto = CreateSessionDto;
-//# sourceMappingURL=create-Session.dto.js.map
+], CreateQuestionnaireAnswerDto.prototype, "questionId", void 0);
+__decorate([
+    class_validator_1.IsInt(),
+    __metadata("design:type", Number)
+], CreateQuestionnaireAnswerDto.prototype, "weight", void 0);
+__decorate([
+    class_validator_1.IsString(),
+    __metadata("design:type", String)
+], CreateQuestionnaireAnswerDto.prototype, "domain", void 0);
+exports.CreateQuestionnaireAnswerDto = CreateQuestionnaireAnswerDto;
+//# sourceMappingURL=create-QuestionnaireAnswer.dto.js.map

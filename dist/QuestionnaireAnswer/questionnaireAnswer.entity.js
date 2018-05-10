@@ -10,31 +10,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const questionnaireAnswer_entity_1 = require("../QuestionnaireAnswer/questionnaireAnswer.entity");
-let SessionEntity = class SessionEntity {
+const session_entity_1 = require("../Session/session.entity");
+let QuestionnaireAnswerEntity = class QuestionnaireAnswerEntity {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn(),
     __metadata("design:type", Number)
-], SessionEntity.prototype, "id", void 0);
+], QuestionnaireAnswerEntity.prototype, "id", void 0);
 __decorate([
     typeorm_1.Column(),
     __metadata("design:type", Number)
-], SessionEntity.prototype, "userId", void 0);
+], QuestionnaireAnswerEntity.prototype, "questionId", void 0);
 __decorate([
-    typeorm_1.CreateDateColumn(),
+    typeorm_1.Column('jsonb'),
     __metadata("design:type", Object)
-], SessionEntity.prototype, "createDate", void 0);
+], QuestionnaireAnswerEntity.prototype, "answer", void 0);
 __decorate([
-    typeorm_1.UpdateDateColumn(),
-    __metadata("design:type", Object)
-], SessionEntity.prototype, "updateDate", void 0);
+    typeorm_1.Column(),
+    __metadata("design:type", String)
+], QuestionnaireAnswerEntity.prototype, "domain", void 0);
 __decorate([
-    typeorm_1.OneToMany(type => questionnaireAnswer_entity_1.QuestionnaireAnswerEntity, questionnaireAnswer => questionnaireAnswer.session),
-    __metadata("design:type", Array)
-], SessionEntity.prototype, "questionnaireAnswer", void 0);
-SessionEntity = __decorate([
+    typeorm_1.Column(),
+    __metadata("design:type", Number)
+], QuestionnaireAnswerEntity.prototype, "weight", void 0);
+__decorate([
+    typeorm_1.ManyToOne(type => session_entity_1.SessionEntity, session => session.questionnaireAnswer),
+    __metadata("design:type", session_entity_1.SessionEntity)
+], QuestionnaireAnswerEntity.prototype, "session", void 0);
+QuestionnaireAnswerEntity = __decorate([
     typeorm_1.Entity()
-], SessionEntity);
-exports.SessionEntity = SessionEntity;
-//# sourceMappingURL=session.entity.js.map
+], QuestionnaireAnswerEntity);
+exports.QuestionnaireAnswerEntity = QuestionnaireAnswerEntity;
+//# sourceMappingURL=questionnaireAnswer.entity.js.map

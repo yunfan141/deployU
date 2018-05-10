@@ -29,7 +29,6 @@ export class UserService implements IUserService{
      }else{
        return null;
      }
-
   }
 
   public async deleteUser(userId:number):Promise<string>{
@@ -39,6 +38,47 @@ export class UserService implements IUserService{
       return 'delete success';
     }else{
       return 'delete fail';
+    }
+  }
+  //feature for get security question
+  public async getUserSecurityQuestion(userId:number):Promise<Object|string>{
+    const selectedUser = await this.userRepository.findOne({where:{id:userId}});
+    if(selectedUser){
+      const securityQuestions = selectedUser.security.map((item) => {
+        return {question:item.q};
+      })
+      return securityQuestions;
+    }else{
+      return 'User does not exist';
+    }
+  }
+  //feature for the correctness of security question
+  public async checkUserSecurityQuestion(userId:number,answers:Array<any>):Promise<boolean>{
+    let result:boolean = true;
+    const selectedUser = await this.userRepository.findOne({where:{id:userId}});
+    for(let i = 0; i < answers.length;i++){
+      if(answers[i].q !== selectedUser.security[i].q){
+        result = false;
+      }
+    }
+    return await result;
+  }
+  //login in check, pending
+  public async checkUserLogin(logInfo:any):Promise<boolean>{
+    const selectedUser = await this.userRepository.findOne({where:{userName:logInfo.userName,password:logInfo.password,userType:logInfo.userType}});
+    if(selectedUser){
+      return true;
+    }else{
+      return false;
+    }
+  }
+  //check the user name exist or not when log in
+  public async checkUserExisting(UserName:any):Promise<boolean>{
+    const selectedUser = await this.userRepository.findOne({where:{userName:UserName.username}});
+    if(selectedUser){
+      return false;
+    }else{
+      return true;
     }
   }
 

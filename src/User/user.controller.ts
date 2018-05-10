@@ -37,4 +37,22 @@ export class UserController {
     const msg = await this.userService.deleteUser(params.id);
     return msg;
   }
+
+  @Get('securityQuestions/:id')
+  public async getUserSecurityQuestion(@Param() params){
+    const msg = await this.userService.getUserSecurityQuestion(params.id);
+    return msg;
+  }
+
+  @Patch('securityQuestion/:id')
+  public async checkUserSecurityQuestion(@Param() params,@Body() answer){
+    const msg = await this.userService.checkUserSecurityQuestion(params.id,answer);
+    return msg;
+  }
+
+  @Post()
+  public async checkUserExisting(@Body() UserName){
+    const msg = await this.userService.checkUserExisting(UserName);
+    return msg;
+  }
 }

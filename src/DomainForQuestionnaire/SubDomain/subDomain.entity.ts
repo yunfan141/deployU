@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn,ManyToOne } from 'typeorm';
-import {DomainEntity} from '../Domain/domain.entity';
+// import {DomainEntity} from '../Domain/domain.entity';
 
 @Entity()
 export class SubDomainEntity{
@@ -12,6 +12,6 @@ export class SubDomainEntity{
   @Column()
   weight:number;
 
-  @ManyToOne(type => DomainEntity,domain => domain.subDomain)
-  domain:DomainEntity;
+  // @ManyToOne(type => DomainEntity,domain => domain.subDomain)
+  // domain:DomainEntity;
 }

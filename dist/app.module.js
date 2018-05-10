@@ -19,7 +19,7 @@ AppModule = __decorate([
             database_module_1.DatabaseModule,
             user_module_1.UserModule,
             domain_module_1.DomainModule,
-            subDomain_module_1.SubDomainModule
+            subDomain_module_1.SubDomainModule,
         ]
     })
 ], AppModule);

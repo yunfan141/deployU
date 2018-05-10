@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeorm_1 = require("typeorm");
-const subDomain_entity_1 = require("../SubDomain/subDomain.entity");
 let DomainEntity = class DomainEntity {
 };
 __decorate([
@@ -25,10 +24,6 @@ __decorate([
     typeorm_1.Column(),
     __metadata("design:type", Number)
 ], DomainEntity.prototype, "weight", void 0);
-__decorate([
-    typeorm_1.OneToMany(type => subDomain_entity_1.SubDomainEntity, subDomain => subDomain.domain),
-    __metadata("design:type", Array)
-], DomainEntity.prototype, "subDomain", void 0);
 DomainEntity = __decorate([
     typeorm_1.Entity()
 ], DomainEntity);

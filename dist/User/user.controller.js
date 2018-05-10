@@ -57,6 +57,24 @@ let UserController = class UserController {
             return msg;
         });
     }
+    getUserSecurityQuestion(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const msg = yield this.userService.getUserSecurityQuestion(params.id);
+            return msg;
+        });
+    }
+    checkUserSecurityQuestion(params, answer) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const msg = yield this.userService.checkUserSecurityQuestion(params.id, answer);
+            return msg;
+        });
+    }
+    checkUserExisting(UserName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const msg = yield this.userService.checkUserExisting(UserName);
+            return msg;
+        });
+    }
 };
 __decorate([
     common_1.Get(),
@@ -92,6 +110,27 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "deleteUser", null);
+__decorate([
+    common_1.Get('securityQuestions/:id'),
+    __param(0, common_1.Param()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getUserSecurityQuestion", null);
+__decorate([
+    common_1.Patch('securityQuestion/:id'),
+    __param(0, common_1.Param()), __param(1, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "checkUserSecurityQuestion", null);
+__decorate([
+    common_1.Post(),
+    __param(0, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "checkUserExisting", null);
 UserController = __decorate([
     common_1.Controller('User'),
     __metadata("design:paramtypes", [user_service_1.UserService])

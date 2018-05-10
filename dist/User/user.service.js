@@ -65,6 +65,54 @@ let UserService = class UserService {
             }
         });
     }
+    getUserSecurityQuestion(userId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const selectedUser = yield this.userRepository.findOne({ where: { id: userId } });
+            if (selectedUser) {
+                const securityQuestions = selectedUser.security.map((item) => {
+                    return { question: item.q };
+                });
+                return securityQuestions;
+            }
+            else {
+                return 'User does not exist';
+            }
+        });
+    }
+    checkUserSecurityQuestion(userId, answers) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let result = true;
+            const selectedUser = yield this.userRepository.findOne({ where: { id: userId } });
+            for (let i = 0; i < answers.length; i++) {
+                if (answers[i].q !== selectedUser.security[i].q) {
+                    result = false;
+                }
+            }
+            return yield result;
+        });
+    }
+    checkUserLogin(logInfo) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const selectedUser = yield this.userRepository.findOne({ where: { userName: logInfo.userName, password: logInfo.password, userType: logInfo.userType } });
+            if (selectedUser) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        });
+    }
+    checkUserExisting(UserName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const selectedUser = yield this.userRepository.findOne({ where: { userName: UserName.username } });
+            if (selectedUser) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        });
+    }
 };
 UserService = __decorate([
     common_1.Component(),

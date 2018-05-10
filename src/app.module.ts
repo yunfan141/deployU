@@ -3,6 +3,8 @@ import { DatabaseModule } from './Shared/DataBase/database.module';
 import { UserModule } from './User/user.module';
 import { DomainModule } from './DomainForQuestionnaire/Domain/domain.module';
 import { SubDomainModule } from './DomainForQuestionnaire/SubDomain/subDomain.module';
+import { DemographicModule } from './Demograpic/demographic.module';
+import { QuestionnaireModule } from './Questionnaire/questionnaire.module';
 // GraphQL
 // import { graphqlExpress } from 'apollo-server-express';
 // import { GraphQLModule, GraphQLFactory  } from '@nestjs/graphql';
@@ -12,6 +14,8 @@ import { SubDomainModule } from './DomainForQuestionnaire/SubDomain/subDomain.mo
     UserModule,
     DomainModule,
     SubDomainModule,
+    DemographicModule,
+    QuestionnaireModule
     // GraphQLModule
   ]
 })

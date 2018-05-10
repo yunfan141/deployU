@@ -5,6 +5,7 @@ import { DomainModule } from './DomainForQuestionnaire/Domain/domain.module';
 import { SubDomainModule } from './DomainForQuestionnaire/SubDomain/subDomain.module';
 import { DemographicModule } from './Demograpic/demographic.module';
 import { QuestionnaireModule } from './Questionnaire/questionnaire.module';
+import { UserDemographicModule } from './UsersDemographic/userDemographic.module';
 // GraphQL
 // import { graphqlExpress } from 'apollo-server-express';
 // import { GraphQLModule, GraphQLFactory  } from '@nestjs/graphql';
@@ -15,7 +16,8 @@ import { QuestionnaireModule } from './Questionnaire/questionnaire.module';
     DomainModule,
     SubDomainModule,
     DemographicModule,
-    QuestionnaireModule
+    QuestionnaireModule,
+    UserDemographicModule
     // GraphQLModule
   ]
 })

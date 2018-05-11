@@ -10,13 +10,14 @@ async function bootstrap() {
     origin: 'http://localhost:4200'
   });
   const options = new DocumentBuilder()
-    .setTitle('HealthU Backend')
+    .setTitle('HealthU')
     .setDescription('The HealthU API description')
     .setVersion('1.0')
     .addTag('HealthU')
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/api', app, document);
+
 
   await app.listen(3000);
 }

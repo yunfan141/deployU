@@ -18,7 +18,7 @@
     "@nestjs/core": "^4.6.6",
     "@nestjs/graphql": "^2.0.0",
     "@nestjs/microservices": "^4.5.8",
-    "@nestjs/swagger": "^1.3.0",
+    "@nestjs/swagger": "^1.2.2",
     "@nestjs/testing": "^4.5.5",
     "@nestjs/typeorm": "^2.0.0",
     "@nestjs/websockets": "^4.5.8",

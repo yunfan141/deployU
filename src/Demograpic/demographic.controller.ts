@@ -1,8 +1,10 @@
 import {Controller, Get, Patch, Post, Param, Body,Delete } from '@nestjs/common';
 import {DemographicService} from './demographic.service';
 import {CreateDemographicDto} from './DTO/create-Demographic.dto';
+import { ApiUseTags,ApiResponse } from '@nestjs/swagger';
 
 @Controller('demographic')
+@ApiUseTags('HealthU')
 export class DemographicController {
   constructor(
     private demographicService:DemographicService
@@ -21,6 +23,8 @@ export class DemographicController {
   }
 
   @Post()
+  @ApiResponse({ status: 201, description: 'The record has been successfully created.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.'})
   public async addDemographic(@Body() demographic:CreateDemographicDto){
     const msg = await this.demographicService.addDemographic(demographic);
     return msg;

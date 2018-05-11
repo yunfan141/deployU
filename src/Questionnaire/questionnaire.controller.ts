@@ -1,8 +1,10 @@
 import {Controller,Post,Get,Patch,Delete,Param,Body} from '@nestjs/common';
 import { CreateQuestionnaireDto} from './DTO/create-Questionnaire.dto';
 import { QuestionnaireService} from './questionnaire.service';
+import { ApiUseTags } from '@nestjs/swagger';
 
 @Controller('questionnaire')
+@ApiUseTags('HealthU')
 export class QuestionnaireController {
   constructor(
     private questionnaireService:QuestionnaireService

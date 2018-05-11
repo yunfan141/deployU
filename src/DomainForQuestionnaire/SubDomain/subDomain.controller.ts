@@ -1,8 +1,10 @@
 import {Controller, Get, Patch, Post, Param, Body,Delete} from '@nestjs/common';
 import {CreateSubDomainDto} from './DTO/create-SubDomain.dto';
 import {SubDomainService} from './subDomain.service';
+import { ApiUseTags } from '@nestjs/swagger';
 
 @Controller('subDomain')
+@ApiUseTags('HealthU')
 export class SubDomainController {
   constructor(
     private subDomainService:SubDomainService

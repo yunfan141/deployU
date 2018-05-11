@@ -14,41 +14,41 @@ const swagger_1 = require("@nestjs/swagger");
 class CreateDemographicDto {
 }
 __decorate([
-    swagger_1.ApiModelProperty(),
+    swagger_1.ApiModelProperty({ type: Number }),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateDemographicDto.prototype, "id", void 0);
 __decorate([
-    swagger_1.ApiModelProperty(),
+    swagger_1.ApiModelProperty({ type: String }),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateDemographicDto.prototype, "key", void 0);
 __decorate([
-    swagger_1.ApiModelProperty(),
+    swagger_1.ApiModelProperty({ type: String }),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateDemographicDto.prototype, "label", void 0);
 __decorate([
-    swagger_1.ApiModelProperty(),
+    swagger_1.ApiModelProperty({ type: String }),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateDemographicDto.prototype, "hint", void 0);
 __decorate([
-    swagger_1.ApiModelProperty(),
+    swagger_1.ApiModelProperty({ type: String }),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateDemographicDto.prototype, "type", void 0);
 __decorate([
-    swagger_1.ApiModelProperty(),
+    swagger_1.ApiModelProperty({ type: Object }),
     __metadata("design:type", Object)
 ], CreateDemographicDto.prototype, "ansOptions", void 0);
 __decorate([
-    swagger_1.ApiModelProperty(),
+    swagger_1.ApiModelProperty({ type: Number }),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateDemographicDto.prototype, "order", void 0);
 __decorate([
-    swagger_1.ApiModelProperty(),
+    swagger_1.ApiModelProperty({ type: Boolean }),
     __metadata("design:type", Boolean)
 ], CreateDemographicDto.prototype, "required", void 0);
 exports.CreateDemographicDto = CreateDemographicDto;

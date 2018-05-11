@@ -23,6 +23,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const create_Domain_dto_1 = require("./DTO/create-Domain.dto");
 const domain_service_1 = require("./domain.service");
+const swagger_1 = require("@nestjs/swagger");
 let DomainController = class DomainController {
     constructor(domainService) {
         this.domainService = domainService;
@@ -94,6 +95,7 @@ __decorate([
 ], DomainController.prototype, "deleteDomain", null);
 DomainController = __decorate([
     common_1.Controller('domain'),
+    swagger_1.ApiUseTags('HealthU'),
     __metadata("design:paramtypes", [domain_service_1.DomainService])
 ], DomainController);
 exports.DomainController = DomainController;

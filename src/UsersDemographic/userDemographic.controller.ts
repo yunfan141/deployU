@@ -1,8 +1,10 @@
 import {Controller,Get,Post,Patch,Delete,Body,Param} from '@nestjs/common';
 import {UserDemographicService} from './userDemographic.service';
 import {CreateUserDemographicDto} from './DTO/create-UserDemographic.dto';
+import { ApiUseTags } from '@nestjs/swagger';
 
 @Controller('userDemographic')
+@ApiUseTags('HealthU')
 export class UserDemographicController {
   constructor(
     private userDemographicService: UserDemographicService

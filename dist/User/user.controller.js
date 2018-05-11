@@ -23,6 +23,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
 const create_User_dto_1 = require("./DTO/create-User.dto");
+const swagger_1 = require("@nestjs/swagger");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -133,6 +134,7 @@ __decorate([
 ], UserController.prototype, "checkUserExisting", null);
 UserController = __decorate([
     common_1.Controller('User'),
+    swagger_1.ApiUseTags('HealthU'),
     __metadata("design:paramtypes", [user_service_1.UserService])
 ], UserController);
 exports.UserController = UserController;

@@ -23,6 +23,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const create_SubDomain_dto_1 = require("./DTO/create-SubDomain.dto");
 const subDomain_service_1 = require("./subDomain.service");
+const swagger_1 = require("@nestjs/swagger");
 let SubDomainController = class SubDomainController {
     constructor(subDomainService) {
         this.subDomainService = subDomainService;
@@ -94,6 +95,7 @@ __decorate([
 ], SubDomainController.prototype, "deleteSubDomain", null);
 SubDomainController = __decorate([
     common_1.Controller('subDomain'),
+    swagger_1.ApiUseTags('HealthU'),
     __metadata("design:paramtypes", [subDomain_service_1.SubDomainService])
 ], SubDomainController);
 exports.SubDomainController = SubDomainController;

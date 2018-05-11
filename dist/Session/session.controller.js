@@ -23,6 +23,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const session_service_1 = require("./session.service");
 const create_Session_dto_1 = require("./DTO/create-Session.dto");
+const swagger_1 = require("@nestjs/swagger");
 let SessionController = class SessionController {
     constructor(sessionService) {
         this.sessionService = sessionService;
@@ -107,6 +108,7 @@ __decorate([
 ], SessionController.prototype, "getSessionWithQuestionnaireAnswer", null);
 SessionController = __decorate([
     common_1.Controller('session'),
+    swagger_1.ApiUseTags('HealthU'),
     __metadata("design:paramtypes", [session_service_1.SessionService])
 ], SessionController);
 exports.SessionController = SessionController;

@@ -3,33 +3,33 @@ import { ApiModelProperty } from '@nestjs/swagger';
 
 
 export class CreateDemographicDto {
-  @ApiModelProperty()
+  @ApiModelProperty({type:Number})
   @IsInt()
   id:number;
 
-  @ApiModelProperty()
+  @ApiModelProperty({type:String})
   @IsString()
   key:string;
 
-  @ApiModelProperty()
+  @ApiModelProperty({type:String})
   @IsString()
   label:string;
 
-  @ApiModelProperty()
+  @ApiModelProperty({type:String})
   @IsString()
   hint:string;
 
-  @ApiModelProperty()
+  @ApiModelProperty({type:String})
   @IsString()
   type:string;
 
-  @ApiModelProperty()
+  @ApiModelProperty({type:Object})
   ansOptions:any;
 
-  @ApiModelProperty()
+  @ApiModelProperty({type:Number})
   @IsInt()
   order:number;
 
-  @ApiModelProperty()
+  @ApiModelProperty({type:Boolean})
   required:boolean;
 }

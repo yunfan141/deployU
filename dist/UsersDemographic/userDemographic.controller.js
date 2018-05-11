@@ -23,6 +23,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const userDemographic_service_1 = require("./userDemographic.service");
 const create_UserDemographic_dto_1 = require("./DTO/create-UserDemographic.dto");
+const swagger_1 = require("@nestjs/swagger");
 let UserDemographicController = class UserDemographicController {
     constructor(userDemographicService) {
         this.userDemographicService = userDemographicService;
@@ -81,6 +82,7 @@ __decorate([
 ], UserDemographicController.prototype, "updateUserDemographic", null);
 UserDemographicController = __decorate([
     common_1.Controller('userDemographic'),
+    swagger_1.ApiUseTags('HealthU'),
     __metadata("design:paramtypes", [userDemographic_service_1.UserDemographicService])
 ], UserDemographicController);
 exports.UserDemographicController = UserDemographicController;

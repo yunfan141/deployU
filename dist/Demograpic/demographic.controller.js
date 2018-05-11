@@ -23,6 +23,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const demographic_service_1 = require("./demographic.service");
 const create_Demographic_dto_1 = require("./DTO/create-Demographic.dto");
+const swagger_1 = require("@nestjs/swagger");
 let DemographicController = class DemographicController {
     constructor(demographicService) {
         this.demographicService = demographicService;
@@ -73,6 +74,8 @@ __decorate([
 ], DemographicController.prototype, "getDemographicById", null);
 __decorate([
     common_1.Post(),
+    swagger_1.ApiResponse({ status: 201, description: 'The record has been successfully created.' }),
+    swagger_1.ApiResponse({ status: 403, description: 'Forbidden.' }),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_Demographic_dto_1.CreateDemographicDto]),
@@ -94,6 +97,7 @@ __decorate([
 ], DemographicController.prototype, "deleteDemographic", null);
 DemographicController = __decorate([
     common_1.Controller('demographic'),
+    swagger_1.ApiUseTags('HealthU'),
     __metadata("design:paramtypes", [demographic_service_1.DemographicService])
 ], DemographicController);
 exports.DemographicController = DemographicController;

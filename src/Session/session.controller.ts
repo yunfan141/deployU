@@ -1,8 +1,10 @@
 import {Controller,Get,Post,Patch,Delete,Param,Body} from '@nestjs/common';
 import {SessionService} from './session.service';
 import { CreateSessionDto} from './DTO/create-Session.dto';
+import { ApiUseTags } from '@nestjs/swagger';
 
 @Controller('session')
+@ApiUseTags('HealthU')
 export class SessionController{
   constructor(
     private sessionService:SessionService

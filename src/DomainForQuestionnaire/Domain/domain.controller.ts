@@ -1,8 +1,10 @@
 import {Controller, Get, Patch, Post, Param, Body,Delete} from '@nestjs/common';
 import {CreateDomainDto} from './DTO/create-Domain.dto';
 import {DomainService} from './domain.service';
+import { ApiUseTags } from '@nestjs/swagger';
 
 @Controller('domain')
+@ApiUseTags('HealthU')
 export class DomainController {
   constructor(
     private domainService:DomainService

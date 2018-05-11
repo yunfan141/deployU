@@ -23,6 +23,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
 const questionnaireAnswer_service_1 = require("./questionnaireAnswer.service");
 const create_QuestionnaireAnswer_dto_1 = require("./DTO/create-QuestionnaireAnswer.dto");
+const swagger_1 = require("@nestjs/swagger");
 let QuestionnaireAnswerController = class QuestionnaireAnswerController {
     constructor(quesionnaireAnswerService) {
         this.quesionnaireAnswerService = quesionnaireAnswerService;
@@ -81,6 +82,7 @@ __decorate([
 ], QuestionnaireAnswerController.prototype, "updateQuestionnaireAnswer", null);
 QuestionnaireAnswerController = __decorate([
     common_1.Controller('questionnaireAnswer'),
+    swagger_1.ApiUseTags('HealthU'),
     __metadata("design:paramtypes", [questionnaireAnswer_service_1.QuestionnaireAnswerService])
 ], QuestionnaireAnswerController);
 exports.QuestionnaireAnswerController = QuestionnaireAnswerController;

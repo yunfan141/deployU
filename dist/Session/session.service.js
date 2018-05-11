@@ -92,6 +92,14 @@ let SessionService = class SessionService {
             }
         });
     }
+    getSessionWithQuestionnaireAnswer(sessionId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sessionWithQuestionnaireAnswer = yield typeorm_1.getConnection().getRepository(session_entity_1.SessionEntity)
+                .createQueryBuilder("session").leftJoinAndSelect("session.questionnaireAnswer", "questionnaireAnswer")
+                .where("session.id = :id", { id: sessionId }).getOne();
+            return sessionWithQuestionnaireAnswer;
+        });
+    }
 };
 SessionService = __decorate([
     common_1.Component(),

@@ -37,4 +37,10 @@ export class SessionController{
     const msg = await this.sessionService.deleteSession(params.id);
     return msg;
   }
+
+  @Get('questionnaireAnswer/:id')
+  public async getSessionWithQuestionnaireAnswer(@Param() params){
+    const msg = await this.sessionService.getSessionWithQuestionnaireAnswer(params.id);
+    return msg;
+  }
 }

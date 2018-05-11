@@ -63,4 +63,11 @@ export class SessionService implements ISessionService{
       return 'delete success';
     }
   }
+
+  public async getSessionWithQuestionnaireAnswer(sessionId:number){
+    const sessionWithQuestionnaireAnswer = await getConnection().getRepository(SessionEntity)
+      .createQueryBuilder("session").leftJoinAndSelect("session.questionnaireAnswer","questionnaireAnswer")
+      .where("session.id = :id",{id:sessionId}).getOne();
+    return sessionWithQuestionnaireAnswer;
+  }
 }

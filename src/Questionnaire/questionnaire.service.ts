@@ -1,7 +1,8 @@
 import {Component,Inject} from '@nestjs/common';
 import {IQuestionnaireService,IQuestionnaire} from './Interfaces';
 import {QuestionnaireEntity} from './questionnaire.entity';
-import {Repository} from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
+import { DomainEntity } from '../DomainForQuestionnaire/Domain/domain.entity';
 
 @Component()
 export class QuestionnaireService implements IQuestionnaireService{
@@ -35,5 +36,24 @@ export class QuestionnaireService implements IQuestionnaireService{
     }else{
       return 'delete fail';
     }
+  }
+
+  public async getQuestionnaireByDomain(domainId:number):Promise<Array<QuestionnaireEntity>>{
+    const selectedDomain = await getConnection().getRepository(DomainEntity)
+      .createQueryBuilder("domain").where("domain.id = :id",{id:domainId}).getOne();
+    const selectedQuestionnaires = await getConnection().getRepository(QuestionnaireEntity)
+      .createQueryBuilder("questionnaire").where("questionnaire.domain = :domain",{domain:selectedDomain.domain})
+      .getMany();
+    return await selectedQuestionnaires
+  }
+
+  public async getQuestionnaireCount():Promise<number>{
+    const count = await await getConnection()
+      .createQueryBuilder()
+      .select()
+      .from(QuestionnaireEntity,"questionnaire")
+      .getCount();
+
+    return await count;
   }
 }

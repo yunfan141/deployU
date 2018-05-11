@@ -11,6 +11,7 @@ const session_controller_1 = require("./session.controller");
 const session_service_1 = require("./session.service");
 const session_providers_1 = require("./session.providers");
 const database_module_1 = require("../Shared/DataBase/database.module");
+const questionnaireAnswer_providers_1 = require("../QuestionnaireAnswer/questionnaireAnswer.providers");
 let SessionModule = class SessionModule {
 };
 SessionModule = __decorate([
@@ -20,7 +21,8 @@ SessionModule = __decorate([
         ],
         components: [
             session_providers_1.sessionProvider,
-            session_service_1.SessionService
+            session_service_1.SessionService,
+            questionnaireAnswer_providers_1.questionnaireAnserProvider
         ],
         controllers: [
             session_controller_1.SessionController

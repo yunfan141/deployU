@@ -21,7 +21,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
+const questionnaire_entity_1 = require("./questionnaire.entity");
 const typeorm_1 = require("typeorm");
+const domain_entity_1 = require("../DomainForQuestionnaire/Domain/domain.entity");
 let QuestionnaireService = class QuestionnaireService {
     constructor(questionnaireRepository) {
         this.questionnaireRepository = questionnaireRepository;
@@ -63,6 +65,26 @@ let QuestionnaireService = class QuestionnaireService {
             else {
                 return 'delete fail';
             }
+        });
+    }
+    getQuestionnaireByDomain(domainId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const selectedDomain = yield typeorm_1.getConnection().getRepository(domain_entity_1.DomainEntity)
+                .createQueryBuilder("domain").where("domain.id = :id", { id: domainId }).getOne();
+            const selectedQuestionnaires = yield typeorm_1.getConnection().getRepository(questionnaire_entity_1.QuestionnaireEntity)
+                .createQueryBuilder("questionnaire").where("questionnaire.domain = :domain", { domain: selectedDomain.domain })
+                .getMany();
+            return yield selectedQuestionnaires;
+        });
+    }
+    getQuestionnaireCount() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const count = yield yield typeorm_1.getConnection()
+                .createQueryBuilder()
+                .select()
+                .from(questionnaire_entity_1.QuestionnaireEntity, "questionnaire")
+                .getCount();
+            return yield count;
         });
     }
 };

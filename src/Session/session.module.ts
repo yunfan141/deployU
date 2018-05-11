@@ -3,6 +3,7 @@ import {SessionController} from './session.controller';
 import {SessionService} from './session.service';
 import {sessionProvider} from './session.providers';
 import {DatabaseModule} from '../Shared/DataBase/database.module';
+import {questionnaireAnserProvider} from '../QuestionnaireAnswer/questionnaireAnswer.providers';
 
 @Module({
   imports:[
@@ -10,7 +11,8 @@ import {DatabaseModule} from '../Shared/DataBase/database.module';
   ],
   components:[
     sessionProvider,
-    SessionService
+    SessionService,
+    questionnaireAnserProvider
   ],
   controllers:[
     SessionController

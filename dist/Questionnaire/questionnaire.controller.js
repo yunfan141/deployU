@@ -57,6 +57,12 @@ let QuestionnaireController = class QuestionnaireController {
             return msg;
         });
     }
+    getQuestionnairesByDomain(params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const msg = yield this.questionnaireService.getQuestionnaireByDomain(params.id);
+            return msg;
+        });
+    }
 };
 __decorate([
     common_1.Get(),
@@ -92,6 +98,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], QuestionnaireController.prototype, "deleteQuestionnaire", null);
+__decorate([
+    common_1.Get('domain/:id'),
+    __param(0, common_1.Param()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], QuestionnaireController.prototype, "getQuestionnairesByDomain", null);
 QuestionnaireController = __decorate([
     common_1.Controller('questionnaire'),
     __metadata("design:paramtypes", [questionnaire_service_1.QuestionnaireService])

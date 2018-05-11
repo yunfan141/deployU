@@ -10,23 +10,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
+const swagger_1 = require("@nestjs/swagger");
 class CreateQuestionnaireAnswerDto {
 }
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateQuestionnaireAnswerDto.prototype, "id", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateQuestionnaireAnswerDto.prototype, "questionId", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", Object)
+], CreateQuestionnaireAnswerDto.prototype, "answer", void 0);
+__decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateQuestionnaireAnswerDto.prototype, "weight", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateQuestionnaireAnswerDto.prototype, "domain", void 0);
+__decorate([
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", Object)
+], CreateQuestionnaireAnswerDto.prototype, "session", void 0);
 exports.CreateQuestionnaireAnswerDto = CreateQuestionnaireAnswerDto;
 //# sourceMappingURL=create-QuestionnaireAnswer.dto.js.map

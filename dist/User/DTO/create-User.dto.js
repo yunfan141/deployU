@@ -10,45 +10,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
+const swagger_1 = require("@nestjs/swagger");
 class CreateUserDto {
 }
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateUserDto.prototype, "id", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "userName", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "password", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "userType", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "firstName", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "lastName", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "birthDate", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "gender", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", Object)
+], CreateUserDto.prototype, "security", void 0);
+__decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "phone", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateUserDto.prototype, "email", void 0);

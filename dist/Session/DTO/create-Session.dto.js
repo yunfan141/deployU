@@ -10,15 +10,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
+const swagger_1 = require("@nestjs/swagger");
 class CreateSessionDto {
 }
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateSessionDto.prototype, "id", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateSessionDto.prototype, "userId", void 0);
+__decorate([
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", Object)
+], CreateSessionDto.prototype, "createDate", void 0);
+__decorate([
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", Object)
+], CreateSessionDto.prototype, "updateDate", void 0);
+__decorate([
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", Object)
+], CreateSessionDto.prototype, "questionnaireAnswer", void 0);
 exports.CreateSessionDto = CreateSessionDto;
 //# sourceMappingURL=create-Session.dto.js.map

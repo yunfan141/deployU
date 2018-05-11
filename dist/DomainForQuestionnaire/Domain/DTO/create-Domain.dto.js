@@ -10,19 +10,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
+const swagger_1 = require("@nestjs/swagger");
 class CreateDomainDto {
 }
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateDomainDto.prototype, "id", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateDomainDto.prototype, "domain", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateDomainDto.prototype, "weight", void 0);
+__decorate([
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", Object)
+], CreateDomainDto.prototype, "subDomain", void 0);
 exports.CreateDomainDto = CreateDomainDto;
 //# sourceMappingURL=create-Domain.dto.js.map

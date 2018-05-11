@@ -10,37 +10,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const class_validator_1 = require("class-validator");
+const swagger_1 = require("@nestjs/swagger");
 class CreateQuestionnaireDto {
 }
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateQuestionnaireDto.prototype, "id", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateQuestionnaireDto.prototype, "key", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateQuestionnaireDto.prototype, "label", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateQuestionnaireDto.prototype, "hint", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateQuestionnaireDto.prototype, "type", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", Object)
+], CreateQuestionnaireDto.prototype, "ansOptions", void 0);
+__decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsInt(),
     __metadata("design:type", Number)
 ], CreateQuestionnaireDto.prototype, "order", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
+    __metadata("design:type", Boolean)
+], CreateQuestionnaireDto.prototype, "required", void 0);
+__decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", String)
 ], CreateQuestionnaireDto.prototype, "domain", void 0);
 __decorate([
+    swagger_1.ApiModelProperty(),
     class_validator_1.IsString(),
     __metadata("design:type", Number)
 ], CreateQuestionnaireDto.prototype, "weight", void 0);

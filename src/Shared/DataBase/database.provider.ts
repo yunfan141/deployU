@@ -7,9 +7,9 @@ export const databaseProviders = [
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: "admin",
+      username: "postgres",
       password: "12345",
-      database: 'HealthU',
+      database: 'HealthyU',
       entities: [
         __dirname + '/../../**/*.entity{.ts,.js}',
       ],

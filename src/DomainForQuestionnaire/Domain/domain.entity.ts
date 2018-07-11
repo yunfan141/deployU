@@ -12,6 +12,4 @@ export class DomainEntity {
   @Column()
   weight:number;
 
-  // @OneToMany(type => SubDomainEntity,subDomain => subDomain.domain)
-  // subDomain:SubDomainEntity[];
 }

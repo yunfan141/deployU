@@ -30,6 +30,12 @@ export class UserEntity{
   security:any;
 
   @Column()
+  race: string;
+
+  @Column()
+  maritial: string;
+
+  @Column()
   phone:string;
 
   @Column()

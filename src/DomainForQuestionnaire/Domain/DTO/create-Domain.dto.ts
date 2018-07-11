@@ -14,6 +14,4 @@ export class CreateDomainDto {
   @IsInt()
   weight:number;
 
-  @ApiModelProperty()
-  subDomain:any;
 }

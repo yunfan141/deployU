@@ -40,6 +40,14 @@ export class CreateUserDto {
 
   @ApiModelProperty()
   @IsString()
+  race: string;
+
+  @ApiModelProperty()
+  @IsString()
+  maritial: string;
+
+  @ApiModelProperty()
+  @IsString()
   phone:string;
 
   @ApiModelProperty()

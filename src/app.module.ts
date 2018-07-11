@@ -2,27 +2,18 @@ import { Module,NestModule,MiddlewaresConsumer,RequestMethod } from '@nestjs/com
 import { DatabaseModule } from './Shared/DataBase/database.module';
 import { UserModule } from './User/user.module';
 import { DomainModule } from './DomainForQuestionnaire/Domain/domain.module';
-import { SubDomainModule } from './DomainForQuestionnaire/SubDomain/subDomain.module';
-import { DemographicModule } from './Demograpic/demographic.module';
 import { QuestionnaireModule } from './Questionnaire/questionnaire.module';
-import { UserDemographicModule } from './UsersDemographic/userDemographic.module';
 import { QuestionnaireAnswerModule } from './QuestionnaireAnswer/questionnaireAnswer.module';
 import { SessionModule } from './Session/session.module';
-// GraphQL
-// import { graphqlExpress } from 'apollo-server-express';
-// import { GraphQLModule, GraphQLFactory  } from '@nestjs/graphql';
+
 @Module({
   modules:[
     DatabaseModule,
     UserModule,
     DomainModule,
-    SubDomainModule,
-    DemographicModule,
     QuestionnaireModule,
-    UserDemographicModule,
     QuestionnaireAnswerModule,
     SessionModule
-    // GraphQLModule
   ]
 })
 export class AppModule{

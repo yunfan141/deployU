@@ -6,5 +6,5 @@ export interface IDomainService {
   getDomainById(domainId:number):Promise<DomainEntity|null>;
   addDomain(domain:IDomain):Promise<DomainEntity>;
   updateDomain(domainId:number,newDomain:IDomain):Promise<DomainEntity|null>;
-  deleteDomain(domainId:number):Promise<string>;
+  deleteDomain(domainId:number);
 }

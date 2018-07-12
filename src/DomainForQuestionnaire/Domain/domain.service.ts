@@ -2,6 +2,7 @@ import { Component ,Inject} from "@nestjs/common";
 import { Repository} from 'typeorm';
 import { IDomain,IDomainService} from './Interfaces';
 import { DomainEntity} from './domain.entity';
+import {ExceptionHandler} from '@nestjs/core/errors/exception-handler';
 
 @Component()
 export class DomainService implements IDomainService{
@@ -31,13 +32,13 @@ export class DomainService implements IDomainService{
     }
   }
 
-  public async deleteDomain(domainId:number):Promise<string>{
+  public async deleteDomain(domainId:number) {
     const selectedDomain = await this.domainRepository.findOne({where:{id:domainId}});
     if(selectedDomain){
       await this.domainRepository.delete(domainId);
-      return 'delete success';
+      return;
     }else{
-      return 'delete false';
+      throw ExceptionHandler;
     }
   }
 }

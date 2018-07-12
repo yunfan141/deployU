@@ -6,5 +6,5 @@ export interface IQuestionnaireService {
   getQuestionnaireById(questionnaireId:number):Promise<QuestionnaireEntity|null>;
   addQuestionnaire(questionnaire:IQuestionnaire):Promise<QuestionnaireEntity>;
   updateQuestionnaire(questionnaireId:number,newQuestionnaire:IQuestionnaire):Promise<QuestionnaireEntity|null>;
-  deleteQuestionnaire(questionnaireId:number):Promise<string>;
+  deleteQuestionnaire(questionnaireId:number);
 }

@@ -3,6 +3,7 @@ import {IQuestionnaireService,IQuestionnaire} from './Interfaces';
 import {QuestionnaireEntity} from './questionnaire.entity';
 import { getConnection, Repository } from 'typeorm';
 import { DomainEntity } from '../DomainForQuestionnaire/Domain/domain.entity';
+import {ExceptionHandler} from '@nestjs/core/errors/exception-handler';
 
 @Component()
 export class QuestionnaireService implements IQuestionnaireService{
@@ -28,13 +29,13 @@ export class QuestionnaireService implements IQuestionnaireService{
       return null;
     }
   }
-  public async deleteQuestionnaire(questionnaireId:number):Promise<string>{
+  public async deleteQuestionnaire(questionnaireId:number) {
     const selectedQuestionnaire = await this.questionnaireRepository.findOne({where:{id:questionnaireId}});
     if(selectedQuestionnaire){
       await this.questionnaireRepository.delete(questionnaireId);
-      return 'delete success';
+      return;
     }else{
-      return 'delete fail';
+      throw ExceptionHandler;
     }
   }
 

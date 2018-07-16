@@ -17,16 +17,27 @@ export class SessionService implements ISessionService{
   public async getSessionById(sessionId:number):Promise<SessionEntity|null>{
     return await this.sessionRepository.findOne({where:{id:sessionId}});
   }
-  public async addSession(session:ISession):Promise<SessionEntity>{
-    const selectedSession = await this.sessionRepository.save(session);
-    for(let answer of await session.questionnaireAnswer){
-      const selectedAnswer = await this.questionnaireAnswerRepository.save(answer);
-      await getConnection().createQueryBuilder().relation(QuestionnaireAnswerEntity,"session")
-        .of(selectedAnswer.id).set(selectedSession.id);
-    }
-    return await this.sessionRepository.findOne({where:{id:selectedSession.id}});
 
+  public async addSession(sessionId: number, session: ISession): Promise<SessionEntity> {
+      const selectedSession = await this.sessionRepository.findOne({where:{id: sessionId}});
+      console.log(selectedSession);
+      for (let answer of session.questionnaireAnswer) {
+          const selectedAnswer = await this.questionnaireAnswerRepository.save(answer);
+          await getConnection().createQueryBuilder().relation(QuestionnaireAnswerEntity, "session")
+              .of(selectedAnswer.id).set(selectedSession.id);
+      }
+      return await this.sessionRepository.findOne({where:{id:sessionId}});
   }
+  // public async addSession(sessionId: number, session:ISession):Promise<SessionEntity>{
+  //   const selectedSession = await this.sessionRepository.save(session);
+  //   for(let answer of await session.questionnaireAnswer){
+  //     const selectedAnswer = await this.questionnaireAnswerRepository.save(answer);
+  //     await getConnection().createQueryBuilder().relation(QuestionnaireAnswerEntity,"session")
+  //       .of(selectedAnswer.id).set(selectedSession.id);
+  //   }
+  //   return await this.sessionRepository.findOne({where:{id:selectedSession.id}});
+  //
+  // }
   public async updateSession(sessionId:number,newSession:ISession):Promise<SessionEntity|null>{
     const selectedSession = await this.sessionRepository.findOne({where:{id:sessionId}});
     if(selectedSession){
@@ -69,5 +80,9 @@ export class SessionService implements ISessionService{
       .createQueryBuilder("session").leftJoinAndSelect("session.questionnaireAnswer","questionnaireAnswer")
       .where("session.id = :id",{id:sessionId}).getOne();
     return sessionWithQuestionnaireAnswer;
+  }
+
+  public async createSession(session: ISession): Promise<SessionEntity> {
+    return await this.sessionRepository.save(session);
   }
 }

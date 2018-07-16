@@ -23,10 +23,20 @@ export class SessionController{
   }
 
   @Post()
-  public async addSession(@Body() session:CreateSessionDto){
-    const msg = await this.sessionService.addSession(session);
-    return msg;
+  public async createSession(@Body() session) {
+    return await this.sessionService.createSession(session);
   }
+
+  @Patch('/addSession/:id')
+  public async addSession(@Body() session:CreateSessionDto,@Param() params) {
+      return await this.sessionService.addSession(params, session);
+  }
+
+  // @Post()
+  // public async addSession(@Body() session:CreateSessionDto){
+  //   const msg = await this.sessionService.addSession(session);
+  //   return msg;
+  // }
 
   @Patch(':id')
   public async updateSession(@Param() params,@Body() newSession:CreateSessionDto){

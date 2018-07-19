@@ -3,6 +3,7 @@ import {ISession,ISessionService} from './Interfaces';
 import {SessionEntity} from './session.entity';
 import { Repository,getConnection } from 'typeorm';
 import { QuestionnaireAnswerEntity } from '../QuestionnaireAnswer/questionnaireAnswer.entity';
+import {QuestionnaireEntity} from '../Questionnaire/questionnaire.entity';
 
 @Component()
 export class SessionService implements ISessionService{
@@ -88,5 +89,19 @@ export class SessionService implements ISessionService{
 
   public async createSession(session: ISession): Promise<SessionEntity> {
     return await this.sessionRepository.save(session);
+  }
+
+  public async getQuestionAndAnswerBySessionId(sessionId:number):Promise<Array<object>>{
+      // let solution:Array<object> = [];
+      const selectedAnswers = await getConnection().getRepository(QuestionnaireAnswerEntity).createQueryBuilder("answer")
+          .leftJoinAndSelect("answer.session","session")
+          .where("session.id = :id",{id:sessionId})
+          .getMany();
+      return await Promise.all(selectedAnswers.map(async (answer) => {
+          const selectedQuestionnaire =  await getConnection().getRepository(QuestionnaireEntity).createQueryBuilder("questionnaire")
+              .where("questionnaire.id = :id", {id: answer.questionId})
+              .getOne();
+          return {answer:answer,questionnaire:selectedQuestionnaire };
+      }));
   }
 }

@@ -4,6 +4,7 @@ import {SessionEntity} from './session.entity';
 import { Repository,getConnection } from 'typeorm';
 import { QuestionnaireAnswerEntity } from '../QuestionnaireAnswer/questionnaireAnswer.entity';
 import {QuestionnaireEntity} from '../Questionnaire/questionnaire.entity';
+import {transformException} from '@nestjs/common/interceptors/multer/multer.utils';
 
 @Component()
 export class SessionService implements ISessionService{
@@ -60,7 +61,7 @@ export class SessionService implements ISessionService{
       return null;
     }
   }
-  public async deleteSession(sessionId:number):Promise<string>{
+  public async deleteSession(sessionId:number) {
     const selectedSession = await getConnection().getRepository(SessionEntity)
       .createQueryBuilder("session").leftJoinAndSelect("session.questionnaireAnswer","questionnaireAnswer")
       .where("session.id = :id",{id:sessionId})
@@ -74,9 +75,9 @@ export class SessionService implements ISessionService{
       .execute();
     const deletedSession = await this.sessionRepository.findOne({where:{id:sessionId}});
     if(deletedSession){
-      return 'delete fail';
+      return;
     }else{
-      return 'delete success';
+      return;
     }
   }
 

@@ -22,6 +22,11 @@ export class SessionController{
     return msg;
   }
 
+  @Get('/getSessionByUser/:id')
+  public async getSessionByUserId(@Param() params) {
+    return await this.sessionService.getSessionByUserId(params.id);
+  }
+
   @Post()
   public async createSession(@Body() session) {
     return await this.sessionService.createSession(session);
@@ -29,7 +34,7 @@ export class SessionController{
 
   @Patch('/addSession/:id')
   public async addSession(@Body() session:CreateSessionDto,@Param() params) {
-      return await this.sessionService.addSession(params, session);
+      return await this.sessionService.addSession(params.id, session);
   }
 
   // @Post()

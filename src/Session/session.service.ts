@@ -18,6 +18,10 @@ export class SessionService implements ISessionService{
     return await this.sessionRepository.findOne({where:{id:sessionId}});
   }
 
+  public async getSessionByUserId(id: number): Promise<Array<SessionEntity>> {
+    return await this.sessionRepository.find({where: {userId: id}});
+  }
+
   public async addSession(sessionId: number, session: ISession): Promise<SessionEntity> {
       const selectedSession = await this.sessionRepository.findOne({where:{id: sessionId}});
       console.log(selectedSession);

@@ -5,6 +5,7 @@ import { DomainModule } from './DomainForQuestionnaire/Domain/domain.module';
 import { QuestionnaireModule } from './Questionnaire/questionnaire.module';
 import { QuestionnaireAnswerModule } from './QuestionnaireAnswer/questionnaireAnswer.module';
 import { SessionModule } from './Session/session.module';
+import {AuthModule} from './auth/auth.module';
 
 @Module({
   modules:[
@@ -13,7 +14,8 @@ import { SessionModule } from './Session/session.module';
     DomainModule,
     QuestionnaireModule,
     QuestionnaireAnswerModule,
-    SessionModule
+      AuthModule,
+    SessionModule,
   ]
 })
 export class AppModule{

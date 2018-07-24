@@ -2,11 +2,13 @@ import {Component,Inject} from '@nestjs/common';
 import {IUserService,IUser} from './Interfaces';
 import {UserEntity} from './user.entity';
 import { Repository } from 'typeorm';
+import {AuthService} from '../auth/auth.service';
 
 @Component()
 export class UserService implements IUserService{
   constructor(
-    @Inject('UserRepository') private readonly userRepository: Repository<UserEntity>
+    @Inject('UserRepository') private readonly userRepository: Repository<UserEntity>,
+    private authService: AuthService
   ){}
 
   public async getAllUser():Promise<Array<UserEntity>>{
@@ -80,6 +82,20 @@ export class UserService implements IUserService{
     }else{
       return true;
     }
+  }
+
+  public async checkLoginStatus(LogInfo: any): Promise<any> {
+      const userInfo = await this.userRepository.findOne({where: {userName: LogInfo.username}});
+      if (userInfo && userInfo.password == LogInfo.password && userInfo.userType == LogInfo.role) {
+          const token = await this.authService.createToken();
+          token['id'] = userInfo.id;
+          token['status'] = true;
+          return token;
+      } else {
+          return {
+              status: false
+          };
+      }
   }
 
 }

@@ -9,6 +9,8 @@ export interface IUserService {
   deleteUser(id:number):Promise<string>;
   getUserSecurityQuestion(id:number):Promise<Object|string>;
   checkUserSecurityQuestion(id:number,questions:Array<object>):Promise<boolean>;
-  checkUserLogin(logInfo:any):Promise<boolean>;
-  checkUserExisting(userName:string):Promise<boolean>;
+  // checkUserLogin(logInfo:any):Promise<boolean>;
+  // checkUserExisting(userName:string):Promise<boolean>;
+    checkLoginStatus(logInfo: any): Promise<any>;
+
 }

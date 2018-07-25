@@ -2,13 +2,16 @@ import {Component,Inject} from '@nestjs/common';
 import {IUserService,IUser} from './Interfaces';
 import {UserEntity} from './user.entity';
 import { Repository } from 'typeorm';
-import {AuthService} from '../auth/auth.service';
+import {AuthService} from './auth.service';
+import {JwtPayload} from '../Session/Interfaces/jwt-payload.interface';
+import * as jwt from 'jsonwebtoken';
+
 
 @Component()
 export class UserService implements IUserService{
   constructor(
     @Inject('UserRepository') private readonly userRepository: Repository<UserEntity>,
-    private authService: AuthService
+    private readonly authService: AuthService
   ){}
 
   public async getAllUser():Promise<Array<UserEntity>>{
@@ -65,37 +68,19 @@ export class UserService implements IUserService{
     }
     return await result;
   }
-  //login in check, pending
-  public async checkUserLogin(logInfo:any):Promise<boolean>{
-    const selectedUser = await this.userRepository.findOne({where:{userName:logInfo.userName,password:logInfo.password,userType:logInfo.userType}});
-    if(selectedUser){
-      return true;
-    }else{
-      return false;
-    }
-  }
-  //check the user name exist or not when log in
-  public async checkUserExisting(UserName:any):Promise<boolean>{
-    const selectedUser = await this.userRepository.findOne({where:{userName:UserName.username}});
-    if(selectedUser){
-      return false;
-    }else{
-      return true;
-    }
-  }
+
 
   public async checkLoginStatus(LogInfo: any): Promise<any> {
       const userInfo = await this.userRepository.findOne({where: {userName: LogInfo.username}});
       if (userInfo && userInfo.password == LogInfo.password && userInfo.userType == LogInfo.role) {
-          const token = await this.authService.createToken();
+          const token = await this.authService.createToken(LogInfo);
           token['id'] = userInfo.id;
           token['status'] = true;
           return token;
       } else {
-          return {
-              status: false
-          };
+         return null;
       }
   }
+
 
 }

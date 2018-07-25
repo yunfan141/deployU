@@ -1,7 +1,8 @@
-import {Controller,Get, Post, Patch, Delete, Body,Param} from '@nestjs/common';
+import {Controller, Get, Post, Patch, Delete, Body, Param, UseGuards} from '@nestjs/common';
 import {QuestionnaireAnswerService} from './questionnaireAnswer.service';
 import {CreateQuestionnaireAnswerDto} from './DTO/create-QuestionnaireAnswer.dto';
 import { ApiUseTags } from '@nestjs/swagger';
+import {AuthGuard} from '@nestjs/passport';
 
 @Controller('questionnaireAnswer')
 @ApiUseTags('HealthU')
@@ -23,6 +24,7 @@ export class QuestionnaireAnswerController {
   }
 
   @Post()
+  // @UseGuards(AuthGuard('jwt'))
   public async addQuestionnaireAnswer(@Body() questionnaireAnswer:CreateQuestionnaireAnswerDto){
     const msg = await this.quesionnaireAnswerService.addQuestionnaireAnswer(questionnaireAnswer);
     return msg;

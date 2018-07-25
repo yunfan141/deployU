@@ -30,6 +30,7 @@ export class UserController {
   }
 
   @Patch(':id')
+  @UseGuards(AuthGuard('jwt'))
   public async updateUser(@Param() params,@Body() newUser){
     const msg = await this.userService.updateUser(params.id,newUser);
     return msg;
@@ -53,11 +54,6 @@ export class UserController {
     return msg;
   }
 
-  @Post()
-  public async checkUserExisting(@Body() UserName){
-    const msg = await this.userService.checkUserExisting(UserName);
-    return msg;
-  }
 
   @Post('/login')
     public async checkLoginStatus(@Body() LogInfo) {

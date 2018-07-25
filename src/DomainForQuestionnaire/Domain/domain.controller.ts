@@ -1,7 +1,8 @@
-import {Controller, Get, Patch, Post, Param, Body,Delete} from '@nestjs/common';
+import {Controller, Get, Patch, Post, Param, Body, Delete, UseGuards} from '@nestjs/common';
 import {CreateDomainDto} from './DTO/create-Domain.dto';
 import {DomainService} from './domain.service';
 import { ApiUseTags } from '@nestjs/swagger';
+import {AuthGuard} from '@nestjs/passport';
 
 @Controller('domain')
 @ApiUseTags('HealthU')
@@ -11,6 +12,7 @@ export class DomainController {
   ){}
 
   @Get()
+  // @UseGuards(AuthGuard('jwt'))
   public async getAllDomain(){
     const msg = await this.domainService.getAllDomain();
     return msg;
@@ -23,6 +25,7 @@ export class DomainController {
   }
 
   @Post()
+  // @UseGuards(AuthGuard('jwt'))
   public async addDomain(@Body() domain:CreateDomainDto){
     const msg = await this.domainService.addDomain(domain);
     return msg;
@@ -35,6 +38,7 @@ export class DomainController {
   }
 
   @Delete(':id')
+  // @UseGuards(AuthGuard('jwt'))
   public async deleteDomain(@Param() params){
     const msg = await this.domainService.deleteDomain(params.id);
     return msg;

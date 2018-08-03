@@ -1,8 +1,9 @@
 import { Component ,Inject} from "@nestjs/common";
-import { Repository} from 'typeorm';
+import {getConnection, Repository} from 'typeorm';
 import { IDomain,IDomainService} from './Interfaces';
 import { DomainEntity} from './domain.entity';
 import {ExceptionHandler} from '@nestjs/core/errors/exception-handler';
+import {SessionEntity} from '../../Session/session.entity';
 
 @Component()
 export class DomainService implements IDomainService{
@@ -16,6 +17,12 @@ export class DomainService implements IDomainService{
 
   public async getDomainById(domainId:number):Promise<DomainEntity|null>{
     return await this.domainRepository.findOne({where:{id:domainId}});
+  }
+
+  public async getDomainCompletion(userId: number): Promise<any> {
+      const answers = await getConnection().getRepository(SessionEntity).createQueryBuilder('session')
+          .where('session.userId := userId', {userId: userId}).getMany();
+      return answers;
   }
 
   public async addDomain(domain:IDomain):Promise<DomainEntity>{

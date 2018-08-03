@@ -24,6 +24,11 @@ export class DomainController {
     return msg;
   }
 
+  @Get('/completion/:id')
+    public async getDomainCompletion(@Param() params) {
+      return await this.domainService.getDomainCompletion(params.id);
+    }
+
   @Post()
   // @UseGuards(AuthGuard('jwt'))
   public async addDomain(@Body() domain:CreateDomainDto){

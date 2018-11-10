@@ -28,12 +28,12 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/swagger', app, document);
     // app.use(morgan('dev'));
-    await app.listen(3000);
+    await app.listen(port);
     app.use((req,res,next)=>{
         return res.sendFile(path.join(__dirname,"..","static","index.html"))
 
     });
-    await app.listen(3000);
+    //await app.listen(3000);
 }
 
 bootstrap();

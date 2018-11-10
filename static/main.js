@@ -1304,7 +1304,7 @@ __webpack_require__.r(__webpack_exports__);
 var environment = {
     production: false,
     //apiUrl: '/api'
-    apiUrl: 'http://localhost:3000/api',
+    apiUrl: 'http://cpath.him.pitt.edu:8080/api',
 };
 
 

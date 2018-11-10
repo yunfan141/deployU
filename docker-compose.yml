@@ -24,6 +24,8 @@ services:
       POSTGRES_PASSWORD: 12345
       POSTGRES_USER: postgres
       POSTGRES_DB: HealthyU
+    ports:
+      - "9998:5432"
     volumes:
       - database_volume:/var/lib/postgresql/data
 volumes:

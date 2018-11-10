@@ -5,7 +5,7 @@ export const databaseProviders = [
     provide: 'TypeORMInstance',
     useFactory: async () => await createConnection({
       type: 'postgres',
-      host: 'localhost',
+      host: 'db',
       port: 5432,
       username: "postgres",
       password: "zyf1994",

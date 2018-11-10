@@ -4,11 +4,13 @@ import {SessionEntity} from './session.entity';
 import { Repository,getConnection } from 'typeorm';
 import { QuestionnaireAnswerEntity } from '../QuestionnaireAnswer/questionnaireAnswer.entity';
 import {QuestionnaireEntity} from '../Questionnaire/questionnaire.entity';
+import {UserEntity} from '../User/user.entity';
 import {transformException} from '@nestjs/common/interceptors/multer/multer.utils';
 
 @Component()
 export class SessionService implements ISessionService{
   constructor(
+    @Inject('UserRepository') private readonly userRepository:Repository<UserEntity>,
     @Inject('SessionRepository') private readonly sessionRepository:Repository<SessionEntity>,
     @Inject('QuestionnaireAnswerRepository') private readonly questionnaireAnswerRepository: Repository<QuestionnaireAnswerEntity>
   ){}
@@ -21,7 +23,7 @@ export class SessionService implements ISessionService{
   }
 
   public async getSessionByUserId(id: number): Promise<Array<SessionEntity>> {
-    return await this.sessionRepository.find({where: {userId: id}});
+    return await this.sessionRepository.find({where: {userId: id}, order: {id: "DESC"}});
   }
 
   public async addSession(sessionId: number, session: ISession): Promise<SessionEntity> {
@@ -86,6 +88,63 @@ export class SessionService implements ISessionService{
       .createQueryBuilder("session").leftJoinAndSelect("session.questionnaireAnswer","questionnaireAnswer")
       .where("session.id = :id",{id:sessionId}).getOne();
     return sessionWithQuestionnaireAnswer;
+  }
+
+  public async getSessionScore(sessionId:number): Promise<Array<number>>{
+    const scoreList = [0,0,0,0,0,0,0];
+    const sessionWithQuestionnaireAnswer = await this.getSessionWithQuestionnaireAnswer(sessionId);
+    const questionnaireAnswer = sessionWithQuestionnaireAnswer.questionnaireAnswer;
+    const domainsMap = new Map([
+      ["Physical", 0],
+      ["Emotional", 1],
+      ["Financial", 2],
+      ["Social", 3],
+      ["Spiritual", 4],
+      ["Occupational", 5],
+      ["Intellectual", 6]
+    ])
+    await questionnaireAnswer.forEach( (anwserAndQuestionItem) => {
+        const index = domainsMap.get(anwserAndQuestionItem.domain);
+        scoreList[index] += anwserAndQuestionItem.answer.extent;
+    })
+    console.log(scoreList);
+    return scoreList;  
+  }
+
+  public async getAllRoleScore(){
+    console.log('test0');
+    let roleScore = {"Student": [0,0,0,0,0,0,0,0], "Faculty": [0,0,0,0,0,0,0,0], "Staff": [0,0,0,0,0,0,0,0]};
+    console.log('test1');
+    const allSession = await this.getAllSession();
+    console.log('test');
+    const allSessionIdAndUserId =  await allSession.map(item => {
+      return {"sessionid": item.id, "userId" : item.userId}
+    });
+    // await allSessionIdAndUserId.forEach( async item =>{
+    //   const scoreList =  await this.getSessionScore(item.sessionid);
+    //   const user = await this.userRepository.findOne({where:{id:item.userId}});
+    //   const role = user.userType;
+    //   console.log("vvvvvvvvvvvvvvvvv");
+    //   console.log(role);
+    //   console.log(scoreList);
+    //   for(let i = 0; i < 7; i++){
+    //     roleScore[role][i] += scoreList[i];
+    //     console.log(roleScore);
+    //     roleScore[role][7] += scoreList[i];
+    //   }
+    // })
+    for(let i = 0; i < allSessionIdAndUserId.length; i++){
+      const item = allSessionIdAndUserId[i];
+      const scoreList =  await this.getSessionScore(item.sessionid);
+      const user = await this.userRepository.findOne({where:{id:item.userId}});
+      const role = user.userType;
+      for(let i = 0; i < 7; i++){
+        roleScore[role][i] += scoreList[i];
+        console.log(roleScore);
+        roleScore[role][7] += scoreList[i];
+      }
+    }
+    return roleScore;
   }
 
   public async createSession(session: ISession): Promise<SessionEntity> {

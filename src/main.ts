@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as path from "path";
+import * as morgan from 'morgan'
 require("reflect-metadata");
 
 const express = require("express")
@@ -12,7 +13,6 @@ const port = process.env.PORT || 3000;
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     app.setGlobalPrefix('/api')
-    // app.useGlobalPipes(new ValidationPipe()th;
     app.use(express.static(path.join(__dirname,"..","static")));
 
   // app = await NestFactory.create(AppModule);
@@ -27,13 +27,13 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('/swagger', app, document);
-
-    await app.listen(port);
+    // app.use(morgan('dev'));
+    await app.listen(3000);
     app.use((req,res,next)=>{
         return res.sendFile(path.join(__dirname,"..","static","index.html"))
 
     });
-  // await app.listen(3000);
+    await app.listen(3000);
 }
 
 bootstrap();

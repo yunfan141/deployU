@@ -9,8 +9,8 @@ import {AuthModule} from './auth/auth.module';
 
 @Module({
   modules:[
-    DatabaseModule,
     UserModule,
+    DatabaseModule,
     DomainModule,
     QuestionnaireModule,
     QuestionnaireAnswerModule,

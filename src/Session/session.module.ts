@@ -4,6 +4,7 @@ import {SessionService} from './session.service';
 import {sessionProvider} from './session.providers';
 import {DatabaseModule} from '../Shared/DataBase/database.module';
 import {questionnaireAnserProvider} from '../QuestionnaireAnswer/questionnaireAnswer.providers';
+import {userProvider} from '../User/user.providers'
 
 @Module({
   imports:[
@@ -12,7 +13,8 @@ import {questionnaireAnserProvider} from '../QuestionnaireAnswer/questionnaireAn
   components:[
     sessionProvider,
     SessionService,
-    questionnaireAnserProvider
+    questionnaireAnserProvider,
+    userProvider
   ],
   controllers:[
     SessionController

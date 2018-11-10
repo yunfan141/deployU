@@ -4,8 +4,8 @@ import { CreateUserDto} from './DTO/create-User.dto';
 import { ApiUseTags } from '@nestjs/swagger';
 import {AuthGuard} from '@nestjs/passport';
 
-@Controller('User')
-@ApiUseTags('HealthU')
+@Controller('/User')
+// @ApiUseTags('HealthU')
 export class UserController {
   constructor(
     private userService:UserService

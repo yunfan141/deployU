@@ -29,6 +29,16 @@ export class SessionController{
     return await this.sessionService.getSessionByUserId(params.id);
   }
 
+  @Get('/getSessionScoreBySeesionId/:id')
+  public async getSessionScoreBySeesionId(@Param() params) {
+    return await this.sessionService.getSessionScore(params.id);
+  }
+
+  @Get('/getRoleScore/:id')
+  public async getRoleScore(){
+    return await this.sessionService.getAllRoleScore();
+  }
+
   @Post()
   // @UseGuards(AuthGuard('jwt'))
   public async createSession(@Body() session) {
@@ -39,6 +49,8 @@ export class SessionController{
   public async addSession(@Body() session:CreateSessionDto,@Param() params) {
       return await this.sessionService.addSession(params.id, session);
   }
+
+
 
   // @Post()
   // public async addSession(@Body() session:CreateSessionDto){

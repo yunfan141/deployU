@@ -800,6 +800,10 @@ var QuestionService = /** @class */ (function () {
     QuestionService.prototype.getRoleScore = function (id) {
         return this.http.get(_http_service__WEBPACK_IMPORTED_MODULE_4__["API_URL"] + '/session/getRoleScore/' + id);
     };
+    /**GET All Role Score By Month */
+    QuestionService.prototype.getAllRoleScoreByMonth = function (month) {
+        return this.http.get(_http_service__WEBPACK_IMPORTED_MODULE_4__["API_URL"] + '/session/getAllRoleScoreByMonth/' + month);
+    };
     /**GET question answers by session */
     QuestionService.prototype.getAnswersBySession = function (sessionId) {
         return this.http.get(_http_service__WEBPACK_IMPORTED_MODULE_4__["API_URL"] + '/session/questionAndAnswer/' + sessionId)
@@ -1256,6 +1260,10 @@ var UserService = /** @class */ (function () {
         return this.http.get(_http_service__WEBPACK_IMPORTED_MODULE_4__["API_URL"] + '/User/' + id)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["catchError"])(this.handleError('getUserById', id)));
     };
+    /**GET all user */
+    UserService.prototype.getAllUser = function () {
+        return this.http.get(_http_service__WEBPACK_IMPORTED_MODULE_4__["API_URL"] + '/User/');
+    };
     /** POST post username and password to backend*/
     UserService.prototype.loginCheck = function (LogInfo) {
         return this.http.post(_http_service__WEBPACK_IMPORTED_MODULE_4__["API_URL"] + '/User/login', LogInfo, httpOptions)
@@ -1303,7 +1311,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "environment", function() { return environment; });
 var environment = {
     production: false,
-    //apiUrl: '/api'
     apiUrl: 'http://cpath.him.pitt.edu:8080/api',
 };
 

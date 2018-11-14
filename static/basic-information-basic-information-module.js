@@ -18,7 +18,7 @@ module.exports = ".card-title {\n    margin-top: 10px;\n    margin-left: 10px;\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-container\">\n    <div class=\"row\">\n      <app-admin-card></app-admin-card>\n          <div style=\"width: 820px\">\n            <!-- <div class=\"card-title\">\n              <clr-icon shape=\"add-text\" size=\"36\"></clr-icon> &nbsp;\n              <span> Basic Information Ratio</span>\n            </div>\n            <div class=\"card-block\">\n              <div style=\"display: block; padding-top: 30px\">\n                <canvas baseChart\n                        [data]=\"doughnutChartData\"\n                        [labels]=\"doughnutChartLabels\"\n                        [chartType]=\"doughnutChartType\"\n                        (chartHover)=\"chartHovered($event)\"\n                        (chartClick)=\"chartClicked($event)\"></canvas>\n              </div>\n            </div>\n            <div class=\"card-footer\">\n              <div class=\"row\">\n                <div class=\"form-group\" style=\"padding-top: 5px; paddding-left: 10px; margin-left: 8px;\">\n                  <form [formGroup]=\"attrForm\">\n                  <label style=\"font-size: 16px; color: darkblue; padding-bottom: 18px\">Select User Attribute</label>\n                  <div class=\"radio\" *ngFor=\"let item of attributs\">\n                    <input type=\"radio\" name=\"attribute\" [id]=\"item.value\" formControlName=\"attribute\" [value]=\"item.value\">\n                    <label [for]=\"item.value\"> {{ item.label }}</label>\n                  </div>\n                  </form>\n                </div>\n                <!-- <table class=\"table table-responsive table-condensed\">\n                    <tr>\n                      <th>User Attribute</th>\n                      <th *ngFor=\"let attribute of attributes\">{{attribute}}</th>\n                    </tr>\n                    <tr *ngFor=\"let d of lineChartData\">\n                      <td>{{d.label}}</td>\n                      <td *ngFor=\"let label of lineChartLabels; let j=index\">{{d && d.data[j]}}</td>\n                    </tr>\n                </table> -->\n            <div style=\"padding-top: 5px; paddding-left: 10px; margin-left: 8px\">\n                <table style=\"width: 800px\" class=\"table table-responsive table-condensed\">\n                    <tr>\n                      <th>User Attribute</th>\n                      <th>number</th>\n                    </tr>\n                    <tr>\n                      <td style=\"font-weight: bold\">Role</td>\n                      <td></td>\n                    </tr>\n                    <tr>\n                      <td style=\"text-align: left\" >student</td>\n                      <td>1</td>\n                    </tr>\n                    <tr>\n                      <td style=\"text-align: left\"> staff</td>\n                      <td>0</td>\n                    </tr>\n                    <tr>\n                      <td style=\"text-align: left\">faculty</td>\n                      <td>1</td>\n                    </tr>\n                    <tr>\n                        <td style=\"font-weight: bold\">Gender</td>\n                        <td></td>\n                      </tr>\n                      <tr>\n                        <td style=\"text-align: left\" >Male</td>\n                        <td>3</td>\n                      </tr>\n                      <tr>\n                        <td style=\"text-align: left\"> female</td>\n                        <td>0</td>\n                      </tr>\n                      <tr>\n                          <td style=\"font-weight: bold\">Age</td>\n                          <td></td>\n                        </tr>\n                        <tr>\n                          <td style=\"text-align: left\" >0-10</td>\n                          <td>3</td>\n                        </tr>\n                        <tr>\n                          <td style=\"text-align: left\"> 10-20</td>\n                          <td>0</td>\n                        </tr>\n                        <tr>\n                          <td style=\"text-align: left\">30-40</td>\n                          <td>0</td>\n                        </tr>\n                        <tr>\n                            <td style=\"text-align: left\">40-50</td>\n                            <td>0</td>\n                        </tr>\n                </table>\n            </div>\n              <th></th>\n              <button class=\"btn btn-outline\" routerLink=\"/adminDashboard/user-summary\">User Summary</button>\n              <button class=\"btn btn-outline\" routerLink=\"/adminDashboard/data-summary\">Data Summary</button>\n              <button class=\"btn btn-outline\" routerLink=\"/adminDashboard/basic-information\">Basic Information Summary</button>\n          </div>\n        </div>\n</div>\n"
+module.exports = "<div class=\"main-container\">\n    <div class=\"row\">\n      <app-admin-card></app-admin-card>\n          <div style=\"width: 820px\">\n            <!-- <div class=\"card-title\">\n              <clr-icon shape=\"add-text\" size=\"36\"></clr-icon> &nbsp;\n              <span> Basic Information Ratio</span>\n            </div>\n            <div class=\"card-block\">\n              <div style=\"display: block; padding-top: 30px\">\n                <canvas baseChart\n                        [data]=\"doughnutChartData\"\n                        [labels]=\"doughnutChartLabels\"\n                        [chartType]=\"doughnutChartType\"\n                        (chartHover)=\"chartHovered($event)\"\n                        (chartClick)=\"chartClicked($event)\"></canvas>\n              </div>\n            </div>\n            <div class=\"card-footer\">\n              <div class=\"row\">\n                <div class=\"form-group\" style=\"padding-top: 5px; paddding-left: 10px; margin-left: 8px;\">\n                  <form [formGroup]=\"attrForm\">\n                  <label style=\"font-size: 16px; color: darkblue; padding-bottom: 18px\">Select User Attribute</label>\n                  <div class=\"radio\" *ngFor=\"let item of attributs\">\n                    <input type=\"radio\" name=\"attribute\" [id]=\"item.value\" formControlName=\"attribute\" [value]=\"item.value\">\n                    <label [for]=\"item.value\"> {{ item.label }}</label>\n                  </div>\n                  </form>\n                </div>\n                <!-- <table class=\"table table-responsive table-condensed\">\n                    <tr>\n                      <th>User Attribute</th>\n                      <th *ngFor=\"let attribute of attributes\">{{attribute}}</th>\n                    </tr>\n                    <tr *ngFor=\"let d of lineChartData\">\n                      <td>{{d.label}}</td>\n                      <td *ngFor=\"let label of lineChartLabels; let j=index\">{{d && d.data[j]}}</td>\n                    </tr>\n                </table> -->\n            <div style=\"padding-top: 5px; paddding-left: 10px; margin-left: 8px\">\n                <table style=\"width: 800px\" class=\"table table-responsive table-condensed\">\n                    <tr>\n                      <th>User Attribute</th>\n                      <th>number</th>\n                    </tr>\n                    <tr>\n                      <td style=\"font-weight: bold\">Role</td>\n                      <td></td>\n                    </tr>\n                    <tr>\n                      <td style=\"text-align: left\" >student</td>\n                      <td>{{ num_student }}</td>\n                    </tr>\n                    <tr>\n                      <td style=\"text-align: left\"> staff</td>\n                      <td>{{ num_staff }}</td>\n                    </tr>\n                    <tr>\n                      <td style=\"text-align: left\">faculty</td>\n                      <td>{{ num_faculty }}</td>\n                    </tr>\n                    <tr>\n                        <td style=\"font-weight: bold\">Gender</td>\n                        <td></td>\n                      </tr>\n                      <tr>\n                        <td style=\"text-align: left\" >Male</td>\n                        <td>{{ num_male }}</td>\n                      </tr>\n                      <tr>\n                        <td style=\"text-align: left\"> female</td>\n                        <td>{{ num_female }}</td>\n                      </tr>\n                      <tr>\n                          <td style=\"font-weight: bold\">Age</td>\n                          <td></td>\n                        </tr>\n                        <tr>\n                          <td style=\"text-align: left\" >0-10</td>\n                          <td>{{ num_age10 }}</td>\n                        </tr>\n                        <tr>\n                          <td style=\"text-align: left\"> 10-20</td>\n                          <td>{{ num_age20 }}</td>\n                        </tr>\n                        <tr>\n                          <td style=\"text-align: left\">30-40</td>\n                          <td>{{ num_age30 }}</td>\n                        </tr>\n                        <tr>\n                            <td style=\"text-align: left\">40-50</td>\n                            <td>{{ num_age40 }}</td>\n                        </tr>\n                        <tr>\n                            <td style=\"text-align: left\">over 50</td>\n                            <td>{{ num_age50 }}</td>\n                        </tr>\n                </table>\n            </div>\n              <th></th>\n              <button class=\"btn btn-outline\" routerLink=\"/adminDashboard/user-summary\">User Summary</button>\n              <button class=\"btn btn-outline\" routerLink=\"/adminDashboard/data-summary\">Data Summary</button>\n              <button class=\"btn btn-outline\" routerLink=\"/adminDashboard/basic-information\">Basic Information Summary</button>\n          </div>\n        </div>\n</div>\n"
 
 /***/ }),
 
@@ -35,6 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USERATTR", function() { return USERATTR; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _service_user_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../service/user.service */ "./src/app/service/user.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -46,11 +47,23 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var BasicInformationComponent = /** @class */ (function () {
-    function BasicInformationComponent(fb) {
+    function BasicInformationComponent(fb, userService) {
         this.fb = fb;
+        this.userService = userService;
         this.attributs = USERATTR;
         this.selectedAttribute = "Role";
+        this.num_student = 0;
+        this.num_staff = 0;
+        this.num_faculty = 0;
+        this.num_Male = 0;
+        this.num_female = 0;
+        this.num_age10 = 0;
+        this.num_age20 = 0;
+        this.num_age30 = 0;
+        this.num_age40 = 0;
+        this.num_age50 = 0;
         this.barChartOptions = {
             scaleShowVerticalLines: false,
             responsive: true
@@ -72,12 +85,46 @@ var BasicInformationComponent = /** @class */ (function () {
     };
     BasicInformationComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.attrForm = this.fb.group({
-            attribute: ['Role']
-        });
-        this.attrForm.controls['attribute'].valueChanges.subscribe(function (value) {
-            console.log(value);
-            _this.selectedAttribute = value;
+        this.userService.getAllUser().subscribe(function (value) {
+            value.forEach(function (item) {
+                if (item.userType == 'Student') {
+                    _this.num_student++;
+                }
+                if (item.userType == 'Staff') {
+                    _this.num_staff++;
+                }
+                if (item.userType == 'Faculty') {
+                    _this.num_faculty++;
+                }
+                if (item.gender == 'Male') {
+                    _this.num_Male++;
+                }
+                if (item.gender == 'Student') {
+                    _this.num_female++;
+                }
+                if (item.userType == 'Student') {
+                    _this.num_student++;
+                }
+                var birthday = new Date(item.birthDate);
+                var today = new Date();
+                var age = today.getFullYear() - birthday.getFullYear();
+                console.log(age);
+                if (age < 10) {
+                    _this.num_age10++;
+                }
+                else if (age < 20) {
+                    _this.num_age20++;
+                }
+                else if (age < 30) {
+                    _this.num_age30++;
+                }
+                else if (age < 40) {
+                    _this.num_age40++;
+                }
+                else {
+                    _this.num_age50++;
+                }
+            });
         });
     };
     BasicInformationComponent = __decorate([
@@ -86,7 +133,8 @@ var BasicInformationComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./basic-information.component.html */ "./src/app/admin/basic-information/basic-information.component.html"),
             styles: [__webpack_require__(/*! ./basic-information.component.css */ "./src/app/admin/basic-information/basic-information.component.css")]
         }),
-        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"]])
+        __metadata("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
+            _service_user_service__WEBPACK_IMPORTED_MODULE_2__["UserService"]])
     ], BasicInformationComponent);
     return BasicInformationComponent;
 }());

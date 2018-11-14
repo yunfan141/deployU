@@ -60,7 +60,7 @@ var DashboardComponent = /** @class */ (function () {
         this.selectedDomain = 'Overall';
         this.userId = JSON.parse(localStorage.getItem('curUser')).id;
         this.sessions = [];
-        this.scoreList = [];
+        this.scoreList = [[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0]];
         this.dateList = [];
         this.dates = [];
         this.domains1 = [];
@@ -141,7 +141,7 @@ var DashboardComponent = /** @class */ (function () {
             for (var i = 0; i < _this.scoreList.length; i++) {
                 var sum = 0;
                 for (var j = 0; j < 7; j++) {
-                    sum += _this.scoreList[i][j];
+                    sum += Math.floor(_this.scoreList[i][j] / 7);
                 }
                 score.push(sum);
             }

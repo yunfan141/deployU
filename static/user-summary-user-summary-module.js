@@ -60,9 +60,9 @@ var UserSummaryComponent = /** @class */ (function () {
         this.barChartType = 'bar';
         this.barChartLegend = true;
         this.barChartData = [
-            { data: [0, 59, 80, 81, 56, 55, 40], label: 'Student' },
-            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Faculty' },
-            { data: [43, 32, 27, 34, 23, 43, 83], label: 'Staff' }
+            { data: [0, 0, 0, 0, 0, 0, 0], label: 'Student' },
+            { data: [0, 0, 0, 0, 0, 0, 0], label: 'Faculty' },
+            { data: [0, 0, 0, 0, 0, 0, 0], label: 'Staff' }
         ];
         this.doughnutChartLabels = ['Student', 'Faculty', 'Staff'];
         this.doughnutChartData = [350, 450, 100];

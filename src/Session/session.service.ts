@@ -5,6 +5,8 @@ import { Repository,getConnection } from 'typeorm';
 import { QuestionnaireAnswerEntity } from '../QuestionnaireAnswer/questionnaireAnswer.entity';
 import {QuestionnaireEntity} from '../Questionnaire/questionnaire.entity';
 import {UserEntity} from '../User/user.entity';
+import {DomainEntity} from '../DomainForQuestionnaire/Domain/domain.entity'
+//import {QuestionnaireService} from '../Questionnaire/questionnaire.service';
 import {transformException} from '@nestjs/common/interceptors/multer/multer.utils';
 
 @Component()
@@ -12,7 +14,8 @@ export class SessionService implements ISessionService{
   constructor(
     @Inject('UserRepository') private readonly userRepository:Repository<UserEntity>,
     @Inject('SessionRepository') private readonly sessionRepository:Repository<SessionEntity>,
-    @Inject('QuestionnaireAnswerRepository') private readonly questionnaireAnswerRepository: Repository<QuestionnaireAnswerEntity>
+    @Inject('QuestionnaireAnswerRepository') private readonly questionnaireAnswerRepository: Repository<QuestionnaireAnswerEntity>,
+    //private questionnaireService : QuestionnaireService,
   ){}
 
   public async getAllSession():Promise<Array<SessionEntity>>{
@@ -103,48 +106,97 @@ export class SessionService implements ISessionService{
       ["Occupational", 5],
       ["Intellectual", 6]
     ])
+    const domainScoreReg = [0,0,0,0,0,0,0];
+    for(let i = 1; i <= 7; i++){
+      const selectedDomain = await getConnection().getRepository(DomainEntity)
+      .createQueryBuilder("domain").where("domain.id = :id",{id:i}).getOne();
+      const selectedQuestionnaires = await getConnection().getRepository(QuestionnaireEntity)
+      .createQueryBuilder("questionnaire").where("questionnaire.domain = :domain",{domain:selectedDomain.domain})
+      .getMany();
+      await selectedQuestionnaires.forEach( value => {
+        if(value != undefined || value != null){
+          domainScoreReg[i - 1] += value.ansOptions.length;
+        }
+      })
+    }
     await questionnaireAnswer.forEach( (anwserAndQuestionItem) => {
         const index = domainsMap.get(anwserAndQuestionItem.domain);
         scoreList[index] += anwserAndQuestionItem.answer.extent;
     })
     console.log(scoreList);
+    for(let i = 0; i < 7; i++){
+      if(domainScoreReg[i] != 0){
+        scoreList[i] =  Math.floor(scoreList[i] / domainScoreReg[i] * 100 )
+      }
+    }
+    console.log(scoreList);
     return scoreList;  
   }
 
   public async getAllRoleScore(){
-    console.log('test0');
     let roleScore = {"Student": [0,0,0,0,0,0,0,0], "Faculty": [0,0,0,0,0,0,0,0], "Staff": [0,0,0,0,0,0,0,0]};
-    console.log('test1');
     const allSession = await this.getAllSession();
-    console.log('test');
     const allSessionIdAndUserId =  await allSession.map(item => {
       return {"sessionid": item.id, "userId" : item.userId}
     });
-    // await allSessionIdAndUserId.forEach( async item =>{
-    //   const scoreList =  await this.getSessionScore(item.sessionid);
-    //   const user = await this.userRepository.findOne({where:{id:item.userId}});
-    //   const role = user.userType;
-    //   console.log("vvvvvvvvvvvvvvvvv");
-    //   console.log(role);
-    //   console.log(scoreList);
-    //   for(let i = 0; i < 7; i++){
-    //     roleScore[role][i] += scoreList[i];
-    //     console.log(roleScore);
-    //     roleScore[role][7] += scoreList[i];
-    //   }
-    // })
+    const numOfRole = {"Student": 0, "Faculty": 0, "Staff": 0};
     for(let i = 0; i < allSessionIdAndUserId.length; i++){
       const item = allSessionIdAndUserId[i];
       const scoreList =  await this.getSessionScore(item.sessionid);
       const user = await this.userRepository.findOne({where:{id:item.userId}});
       const role = user.userType;
+      numOfRole[role] ++;
       for(let i = 0; i < 7; i++){
         roleScore[role][i] += scoreList[i];
-        console.log(roleScore);
-        roleScore[role][7] += scoreList[i];
+      }
+    }
+    const RoleList = ["Student", "Faculty", "Staff"]
+    for(let i = 0; i < 3; i++){
+      let role = RoleList[i];
+      if(numOfRole[role] != 0){
+        for(let j = 0; j< 7; j++){
+          roleScore[role][j] = Math.floor(roleScore[role][j] / numOfRole[role]);
+          roleScore[role][7] += Math.floor(roleScore[role][j] / 7 );
+        }
       }
     }
     return roleScore;
+  }
+  public async getAllRoleScoreByMonth(month : number){
+    let roleScore = {"Student": [0,0,0,0,0,0,0,0], "Faculty": [0,0,0,0,0,0,0,0], "Staff": [0,0,0,0,0,0,0,0]};
+    const allSession = await this.getAllSession();
+    const allSessionIdAndUserId =  [];
+    await allSession.forEach(item => {
+      const date = new Date(item.createDate);
+      const themonth = date.getMonth();
+      if(themonth == month){
+        allSessionIdAndUserId.push( {"sessionid": item.id, "userId" : item.userId});
+      }
+    });
+    const numOfRole = {"Student": 0, "Faculty": 0, "Staff": 0};
+    for(let i = 0; i < allSessionIdAndUserId.length; i++){
+      const item = allSessionIdAndUserId[i];
+      const scoreList =  await this.getSessionScore(item.sessionid);
+      const user = await this.userRepository.findOne({where:{id:item.userId}});
+      const role = user.userType;
+      numOfRole[role] ++;
+      for(let i = 0; i < 7; i++){
+        roleScore[role][i] += scoreList[i];
+      }
+    }
+    const RoleList = ["Student", "Faculty", "Staff"]
+    for(let i = 0; i < 3; i++){
+      let role = RoleList[i];
+      if(numOfRole[role] != 0){
+        for(let j = 0; j< 7; j++){
+          roleScore[role][j] = Math.floor(roleScore[role][j] / numOfRole[role]);
+          roleScore[role][7] += Math.floor(roleScore[role][j] / 7 );
+        }
+      }
+    }
+    const overallRoleScore = {"Student": roleScore.Student[7], "Faculty": roleScore.Faculty[7], "Staff": roleScore.Staff[7]}
+    console.log(overallRoleScore);
+    return overallRoleScore;
   }
 
   public async createSession(session: ISession): Promise<SessionEntity> {

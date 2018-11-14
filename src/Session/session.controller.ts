@@ -39,6 +39,11 @@ export class SessionController{
     return await this.sessionService.getAllRoleScore();
   }
 
+  @Get('/getAllRoleScoreByMonth/:month')
+  public async getAllRoleScoreByMonth(@Param() params) {
+    return await this.sessionService.getAllRoleScoreByMonth(params.month);
+  }
+
   @Post()
   // @UseGuards(AuthGuard('jwt'))
   public async createSession(@Body() session) {

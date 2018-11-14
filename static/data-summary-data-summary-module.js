@@ -50,11 +50,11 @@ var DataSummaryComponent = /** @class */ (function () {
         this.questionService = questionService;
         this.today = Date.now();
         this.lineChartData = [
-            { data: [65, 59, 80, 81, 56, 55, 40], label: 'Students' },
-            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Faculty' },
-            { data: [18, 48, 77, 9, 100, 27, 40], label: 'Staff' }
+            { data: [0, 0, 0, 0, 0, 0, 0], label: 'Students' },
+            { data: [0, 0, 0, 0, 0, 0, 0], label: 'Faculty' },
+            { data: [0, 0, 0, 0, 0, 0, 0], label: 'Staff' }
         ];
-        this.lineChartLabels = ['October', 'November', 'December', 'January', 'February', 'March', 'April'];
+        this.lineChartLabels = ['November', 'December', 'January', 'February', 'March', 'April', 'May'];
         this.lineChartOptions = {
             responsive: true
         };
@@ -70,10 +70,42 @@ var DataSummaryComponent = /** @class */ (function () {
     };
     DataSummaryComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.questionService.getRoleScore(1).subscribe(function (value) {
-            var _lineChartData = [{ "data": value.Student.slice(7), "label": "Student" }, { "data": value.Faculty.slice(7), "label": "Faculty" }, { "data": value.Staff.slice(7), "label": "Staff" }];
-            _this.lineChartData = _lineChartData;
-        });
+        var monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        var today = new Date();
+        var month = today.getMonth();
+        var endMonth = 0;
+        var startMonth = 0;
+        if (month <= 6) {
+            startMonth = month;
+            endMonth = month + 6;
+        }
+        else {
+            startMonth = month - 6;
+            endMonth = month;
+        }
+        var _lineChartData = [
+            { data: [0, 0, 0, 0, 0, 0, 0], label: 'Students' },
+            { data: [0, 0, 0, 0, 0, 0, 0], label: 'Faculty' },
+            { data: [0, 0, 0, 0, 0, 0, 0], label: 'Staff' }
+        ];
+        var _lineChartLabels = monthList.slice(startMonth, endMonth + 1);
+        var _loop_1 = function (i) {
+            this_1.questionService.getAllRoleScoreByMonth(i).subscribe(function (value) {
+                console.log(value);
+                _lineChartData[0].data[i - startMonth] = value.Student;
+                _lineChartData[1].data[i - startMonth] = value.Faculty;
+                _lineChartData[2].data[i - startMonth] = value.Staff;
+                _this.lineChartData = _lineChartData;
+            });
+        };
+        var this_1 = this;
+        for (var i = startMonth; i <= endMonth; i++) {
+            _loop_1(i);
+        }
+        setTimeout(function () {
+            _this.lineChartLabels = _lineChartLabels;
+            // this.lineChartData = _lineChartData;
+        }, 500);
     };
     DataSummaryComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
